@@ -1,6 +1,6 @@
-export const Card = () => (
+export const Card = ({question}) => (
   <>
-    <h3>Card</h3>
+    <h3>{question}</h3>
   </>
 );
 export default Card;
