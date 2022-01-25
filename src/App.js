@@ -1,5 +1,11 @@
+import CardBox from './pages/CardBox/CardBox.js';
 const App = () => {
-  return <>Welcome to the Leitner Box!</>;
+  return (
+    <>
+      <h1>Welcome to the Leitner Box</h1>
+      <CardBox />
+    </>
+  );
 };
 
 export default App;
