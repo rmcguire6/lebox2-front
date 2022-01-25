@@ -3,7 +3,7 @@ const App = () => {
   return (
     <>
       <h1>Welcome to the Leitner Box</h1>
-      <CardBox />
+      <CardBox loadCards={() => {}} />
     </>
   );
 };
