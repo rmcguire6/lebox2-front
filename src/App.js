@@ -6,7 +6,7 @@ const App = () => {
     <>
       <Provider store={store}>
         <h1>Welcome to the Leitner Box</h1>
-        <CardBox loadCards={() => {}} />
+        <CardBox />
       </Provider>
     </>
   );

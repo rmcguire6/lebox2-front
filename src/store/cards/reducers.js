@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
-const cards = () => [];
+const records = () => [];
 
 export default combineReducers({
-  cards,
+  records,
 });

@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
 import {connect} from 'react-redux';
+import {loadCards} from '../../store/cards/actions';
 
 import Card from '../../components/Card/Card';
 export const CardBox = ({loadCards, cards}) => {
@@ -17,7 +18,9 @@ export const CardBox = ({loadCards, cards}) => {
     </>
   );
 };
+
 const mapStateToProps = state => ({
-  cards: state.cards,
+  cards: state.cards.records,
 });
-export default connect(mapStateToProps)(CardBox);
+const mapDispatchToProps = {loadCards};
+export default connect(mapStateToProps, mapDispatchToProps)(CardBox);
