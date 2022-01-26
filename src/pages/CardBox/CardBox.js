@@ -1,4 +1,6 @@
 import {useEffect} from 'react';
+import {connect} from 'react-redux';
+
 import Card from '../../components/Card/Card';
 export const CardBox = ({loadCards, cards}) => {
   useEffect(() => {
@@ -15,4 +17,7 @@ export const CardBox = ({loadCards, cards}) => {
     </>
   );
 };
-export default CardBox;
+const mapStateToProps = state => ({
+  cards: state.cards,
+});
+export default connect(mapStateToProps)(CardBox);
