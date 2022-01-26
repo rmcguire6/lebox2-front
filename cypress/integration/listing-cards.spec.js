@@ -35,15 +35,14 @@ describe('Listing Cards', () => {
 
     cy.route({
       method: 'GET',
-      url: 'http://159.223.117.26:8000/cards/',
+      url: 'http://localhost:8000/test_cards/',
       response: cardsData,
     });
 
     cy.visit('/cards/');
-    cy.contains(cardsData[0].subject);
-    cy.contains(cardsData[1].answer);
+    cy.contains(cardsData[0].question);
+    cy.contains(cardsData[1].question);
     cy.contains(cardsData[2].question);
-    cy.contains(cardsData[3].creatorId);
-    cy.contains(cardsData[3].isActive);
+    cy.contains(cardsData[3].question);
   });
 });
