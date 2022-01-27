@@ -2,9 +2,9 @@ import {useEffect} from 'react';
 import {connect} from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Alert from '@material-ui/lab/Alert';
-import {loadCards} from '../../store/cards/actions';
+import {loadCards} from '../store/cards/actions';
+import FlashCard from '../components/FlashCard';
 
-import FlashCard from '../../components/FlashCard/FlashCard';
 export const CardBox = ({loadCards, cards, loading, loadError}) => {
   useEffect(() => {
     loadCards();

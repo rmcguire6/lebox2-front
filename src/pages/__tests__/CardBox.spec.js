@@ -1,5 +1,5 @@
 import {render} from '@testing-library/react';
-import {CardBox} from '../CardBox/CardBox';
+import {CardBox} from '../CardBox';
 
 describe('CardBox', () => {
   const cards = [
