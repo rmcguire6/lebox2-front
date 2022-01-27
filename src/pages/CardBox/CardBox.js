@@ -2,7 +2,7 @@ import {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {loadCards} from '../../store/cards/actions';
 
-import Card from '../../components/Card/Card';
+import FlashCard from '../../components/FlashCard/FlashCard';
 export const CardBox = ({loadCards, cards}) => {
   useEffect(() => {
     loadCards();
@@ -12,7 +12,7 @@ export const CardBox = ({loadCards, cards}) => {
       <h2>Cards</h2>
       <ul>
         {cards.map(card => (
-          <Card key={card.cardId} question={card.question} />
+          <FlashCard key={card.cardId} question={card.question} />
         ))}
       </ul>
     </>
