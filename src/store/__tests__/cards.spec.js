@@ -4,16 +4,17 @@ import cardsReducer from '../cards/reducers';
 import {loadCards} from '../cards/actions';
 describe('cards', () => {
   describe('initially', () => {
-    it('does not have the loading flag set', () => {
+    let store;
+    beforeEach(() => {
       const initialState = {};
 
-      const store = createStore(
-        cardsReducer,
-        initialState,
-        applyMiddleware(thunk),
-      );
-
+      store = createStore(cardsReducer, initialState, applyMiddleware(thunk));
+    });
+    it('does not have the loading flag set', () => {
       expect(store.getState().loading).toEqual(false);
+    });
+    it('does not have the error flag set', () => {
+      expect(store.getState().loadError).toEqual(false);
     });
   });
   describe('loadCards action', () => {
@@ -76,22 +77,51 @@ describe('cards', () => {
       });
     });
     describe('while loading', () => {
-      it('sets a loading flag', () => {
+      let store;
+
+      beforeEach(() => {
         const api = {
           loadCards: () => new Promise(() => {}),
         };
-        const initialState = {};
+        const initialState = {loadError: true};
 
-        const store = createStore(
+        store = createStore(
           cardsReducer,
           initialState,
           applyMiddleware(thunk.withExtraArgument(api)),
         );
 
         store.dispatch(loadCards());
-
+      });
+      it('sets a loading flag', () => {
         expect(store.getState().loading).toEqual(true);
       });
+      it('clears the error flag', () => {
+        expect(store.getState().loadError).toEqual(false);
+      });
+    });
+  });
+  describe('when loading fails', () => {
+    let store;
+    beforeEach(() => {
+      const api = {
+        loadCards: () => Promise.reject(),
+      };
+      const initialState = {};
+
+      store = createStore(
+        cardsReducer,
+        initialState,
+        applyMiddleware(thunk.withExtraArgument(api)),
+      );
+
+      return store.dispatch(loadCards());
+    });
+    it('sets an error flag', () => {
+      expect(store.getState().loadError).toEqual(true);
+    });
+    it('clears the loading flag', () => {
+      expect(store.getState().loading).toEqual(false);
     });
   });
 });

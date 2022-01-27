@@ -55,15 +55,6 @@ describe('CardBox', () => {
     expect(loadCards).toHaveBeenCalled();
   });
 
-  it('displays the cards', () => {
-    renderWithProps();
-    const {queryByText} = context;
-    expect(queryByText('vivir')).not.toBeNull();
-    expect(queryByText('tomar')).not.toBeNull();
-    expect(queryByText('comer')).not.toBeNull();
-    expect(queryByText('escribir')).not.toBeNull();
-  });
-
   describe('when loading succeeds', () => {
     it('displays the loading indicator while loading', () => {
       renderWithProps({loading: true});
@@ -74,6 +65,28 @@ describe('CardBox', () => {
       renderWithProps();
       const {queryByTestId} = context;
       expect(queryByTestId('loading-indicator')).toBeNull();
+    });
+    it('does not display the error message when loading succeeds', () => {
+      renderWithProps();
+      const {queryByText} = context;
+      expect(queryByText('Cards could not be loaded.')).toBeNull();
+    });
+    it('displays the cards', () => {
+      renderWithProps();
+      const {queryByText} = context;
+      expect(queryByText('vivir')).not.toBeNull();
+      expect(queryByText('tomar')).not.toBeNull();
+      expect(queryByText('comer')).not.toBeNull();
+      expect(queryByText('escribir')).not.toBeNull();
+    });
+  });
+  describe('when loading fails', () => {
+    beforeEach(() => {
+      renderWithProps({loadError: true});
+    });
+    it('displays the error message', () => {
+      const {queryByText} = context;
+      expect(queryByText('Cards could not be loaded.')).not.toBeNull();
     });
   });
 });

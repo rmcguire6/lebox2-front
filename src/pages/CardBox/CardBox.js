@@ -1,10 +1,11 @@
 import {useEffect} from 'react';
 import {connect} from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Alert from '@material-ui/lab/Alert';
 import {loadCards} from '../../store/cards/actions';
 
 import FlashCard from '../../components/FlashCard/FlashCard';
-export const CardBox = ({loadCards, cards, loading}) => {
+export const CardBox = ({loadCards, cards, loading, loadError}) => {
   useEffect(() => {
     loadCards();
   }, [loadCards]);
@@ -12,6 +13,7 @@ export const CardBox = ({loadCards, cards, loading}) => {
     <>
       <h2>Cards</h2>
       {loading && <CircularProgress data-testid="loading-indicator" />}
+      {loadError && <Alert severity="error">Cards could not be loaded.</Alert>}
       <ul>
         {cards.map(card => (
           <FlashCard key={card.cardId} question={card.question} />
@@ -24,6 +26,7 @@ export const CardBox = ({loadCards, cards, loading}) => {
 const mapStateToProps = state => ({
   cards: state.cards.records,
   loading: state.cards.loading,
+  loadError: state.cards.loadError,
 });
 const mapDispatchToProps = {loadCards};
 export default connect(mapStateToProps, mapDispatchToProps)(CardBox);
