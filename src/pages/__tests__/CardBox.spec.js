@@ -39,19 +39,41 @@ describe('CardBox', () => {
   let loadCards;
   let context;
 
-  beforeEach(() => {
-    loadCards = jest.fn().mockName('loadCards');
-    context = render(<CardBox loadCards={loadCards} cards={cards} />);
-  });
+  const renderWithProps = (propOverrides = {}) => {
+    const props = {
+      loadCards: jest.fn().mockName('loadCards'),
+      loading: false,
+      cards,
+      ...propOverrides,
+    };
+    loadCards = props.loadCards;
+    context = render(<CardBox {...props} />);
+  };
+
   it('loads the session cards on first render', () => {
+    renderWithProps();
     expect(loadCards).toHaveBeenCalled();
   });
 
   it('displays the cards', () => {
+    renderWithProps();
     const {queryByText} = context;
     expect(queryByText('vivir')).not.toBeNull();
     expect(queryByText('tomar')).not.toBeNull();
     expect(queryByText('comer')).not.toBeNull();
     expect(queryByText('escribir')).not.toBeNull();
+  });
+
+  describe('when loading succeeds', () => {
+    it('displays the loading indicator while loading', () => {
+      renderWithProps({loading: true});
+      const {queryByTestId} = context;
+      expect(queryByTestId('loading-indicator')).not.toBeNull();
+    });
+    it('does not display the loading indicator when not loading', () => {
+      renderWithProps();
+      const {queryByTestId} = context;
+      expect(queryByTestId('loading-indicator')).toBeNull();
+    });
   });
 });

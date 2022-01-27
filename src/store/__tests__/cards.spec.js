@@ -3,8 +3,21 @@ import thunk from 'redux-thunk';
 import cardsReducer from '../cards/reducers';
 import {loadCards} from '../cards/actions';
 describe('cards', () => {
+  describe('initially', () => {
+    it('does not have the loading flag set', () => {
+      const initialState = {};
+
+      const store = createStore(
+        cardsReducer,
+        initialState,
+        applyMiddleware(thunk),
+      );
+
+      expect(store.getState().loading).toEqual(false);
+    });
+  });
   describe('loadCards action', () => {
-    it('stores the cards', async () => {
+    describe('when loading succeeds', () => {
       const records = [
         {
           cardId: 1,
@@ -39,21 +52,46 @@ describe('cards', () => {
           isActive: true,
         },
       ];
-      const api = {
-        loadCards: () => Promise.resolve(records),
-      };
-      const initialState = {
-        records: [],
-      };
+      let store;
+      beforeEach(() => {
+        const api = {
+          loadCards: () => Promise.resolve(records),
+        };
+        const initialState = {
+          records: [],
+        };
 
-      const store = createStore(
-        cardsReducer,
-        initialState,
-        applyMiddleware(thunk.withExtraArgument(api)),
-      );
-      await store.dispatch(loadCards());
+        store = createStore(
+          cardsReducer,
+          initialState,
+          applyMiddleware(thunk.withExtraArgument(api)),
+        );
+        return store.dispatch(loadCards());
+      });
+      it('stores the cards', () => {
+        expect(store.getState().records).toEqual(records);
+      });
+      it('clears the loading flag', () => {
+        expect(store.getState().loading).toEqual(false);
+      });
+    });
+    describe('while loading', () => {
+      it('sets a loading flag', () => {
+        const api = {
+          loadCards: () => new Promise(() => {}),
+        };
+        const initialState = {};
 
-      expect(store.getState().records).toEqual(records);
+        const store = createStore(
+          cardsReducer,
+          initialState,
+          applyMiddleware(thunk.withExtraArgument(api)),
+        );
+
+        store.dispatch(loadCards());
+
+        expect(store.getState().loading).toEqual(true);
+      });
     });
   });
 });
