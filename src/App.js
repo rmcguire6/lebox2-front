@@ -8,7 +8,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import store from './store';
-import CardBox from './pages/CardBox.js';
+import CardBox from './pages/CardBox';
+import NewCardForm from './components/NewCardForm';
 
 const theme = createTheme({
   palette: {
@@ -30,6 +31,9 @@ const App = () => {
           </AppBar>
           <Container>
             <CardBox />
+          </Container>
+          <Container>
+            <NewCardForm />
           </Container>
         </ThemeProvider>
       </Provider>
