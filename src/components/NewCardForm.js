@@ -1,6 +1,8 @@
 import {useState} from 'react';
+import {connect} from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import {createCard} from '../store/cards/actions';
 export const NewCardForm = ({createCard}) => {
   const [question, setQuestion] = useState('');
   const handleSubmit = e => {
@@ -27,4 +29,6 @@ export const NewCardForm = ({createCard}) => {
     </form>
   );
 };
-export default NewCardForm;
+const mapStateToProps = null;
+const mapDispatchToProps = {createCard};
+export default connect(mapStateToProps, mapDispatchToProps)(NewCardForm);
