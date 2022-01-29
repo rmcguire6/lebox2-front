@@ -1,10 +1,19 @@
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-export const NewCardForm = () => {
+export const NewCardForm = ({createCard}) => {
+  const handleSubmit = e => {
+    e.preventDefault();
+    createCard();
+  };
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <TextField placeholder="Add a Card" fullWidth variant="filled" />
-      <Button variant="contained" color="primary">
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        data-testid="new-card-submit-button"
+      >
         ADD
       </Button>
     </form>
