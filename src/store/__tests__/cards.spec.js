@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import cardsReducer from '../cards/reducers';
-import {loadCards} from '../cards/actions';
+import {loadCards, createCard} from '../cards/actions';
 describe('cards', () => {
   describe('initially', () => {
     let store;
@@ -122,6 +122,29 @@ describe('cards', () => {
     });
     it('clears the loading flag', () => {
       expect(store.getState().loading).toEqual(false);
+    });
+  });
+  describe('createCard action', () => {
+    const newCardQuestion = 'hablar';
+
+    let api;
+    let store;
+
+    beforeEach(() => {
+      api = {
+        createCard: jest.fn().mockName('createCard'),
+      };
+      const initialState = {};
+
+      store = createStore(
+        cardsReducer,
+        initialState,
+        applyMiddleware(thunk.withExtraArgument(api)),
+      );
+    });
+    it('saves the card to the server', () => {
+      store.dispatch(createCard(newCardQuestion));
+      expect(api.createCard).toHaveBeenCalledWith(newCardQuestion);
     });
   });
 });
