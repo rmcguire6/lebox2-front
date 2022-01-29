@@ -1,6 +1,7 @@
 export const START_LOADING = 'START_LOADING';
 export const STORE_CARDS = 'STORE_CARDS';
 export const RECORD_LOADING_ERROR = 'RECORD_LOADING_ERROR';
+export const ADD_CARD = 'ADD_CARD';
 
 export const loadCards = () => (dispatch, getState, api) => {
   dispatch(startLoading());
@@ -21,4 +22,12 @@ const storeCards = records => ({
 const recordLoadingError = () => ({
   type: RECORD_LOADING_ERROR,
 });
-export const createCard = () => () => {};
+export const createCard = question => (dispatch, getState, api) => {
+  api.createCard(question).then(record => {
+    dispatch(addCard(record));
+  });
+};
+const addCard = record => ({
+  type: ADD_CARD,
+  record,
+});

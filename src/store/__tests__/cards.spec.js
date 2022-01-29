@@ -126,6 +126,8 @@ describe('cards', () => {
   });
   describe('createCard action', () => {
     const newCardQuestion = 'hablar';
+    const existingCard = {cardId: 1, question: 'vivir'};
+    const responseCard = {cardId: 5, question: newCardQuestion};
 
     let api;
     let store;
@@ -134,7 +136,7 @@ describe('cards', () => {
       api = {
         createCard: jest.fn().mockName('createCard'),
       };
-      const initialState = {};
+      const initialState = {records: [existingCard]};
 
       store = createStore(
         cardsReducer,
@@ -143,8 +145,19 @@ describe('cards', () => {
       );
     });
     it('saves the card to the server', () => {
+      api.createCard.mockResolvedValue(responseCard);
       store.dispatch(createCard(newCardQuestion));
       expect(api.createCard).toHaveBeenCalledWith(newCardQuestion);
+    });
+    describe('when save succeeds', () => {
+      beforeEach(() => {
+        api.createCard.mockResolvedValue(responseCard);
+        store.dispatch(createCard(newCardQuestion));
+      });
+
+      it('stores the returned restaurant in the store', () => {
+        expect(store.getState().records).toEqual([existingCard, responseCard]);
+      });
     });
   });
 });

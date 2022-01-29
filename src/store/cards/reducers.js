@@ -1,10 +1,17 @@
 import {combineReducers} from 'redux';
-import {START_LOADING, STORE_CARDS, RECORD_LOADING_ERROR} from './actions';
+import {
+  START_LOADING,
+  STORE_CARDS,
+  RECORD_LOADING_ERROR,
+  ADD_CARD,
+} from './actions';
 
 const records = (state = [], action) => {
   switch (action.type) {
     case STORE_CARDS:
       return action.records;
+    case ADD_CARD:
+      return [...state, action.record];
     default:
       return state;
   }
