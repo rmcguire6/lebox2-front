@@ -127,7 +127,7 @@ describe('cards', () => {
   describe('createCard action', () => {
     const newCardQuestion = 'hablar';
     const existingCard = {cardId: 1, question: 'vivir'};
-    const responseCard = {cardId: 5, question: newCardQuestion};
+    const responseCard = {cardId: 5, question: 'hablar'};
 
     let api;
     let store;
@@ -155,7 +155,7 @@ describe('cards', () => {
         store.dispatch(createCard(newCardQuestion));
       });
 
-      it('stores the returned restaurant in the store', () => {
+      it('stores the returned card in the store', () => {
         expect(store.getState().records).toEqual([existingCard, responseCard]);
       });
     });
