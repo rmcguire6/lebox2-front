@@ -22,12 +22,12 @@ const storeCards = records => ({
 const recordLoadingError = () => ({
   type: RECORD_LOADING_ERROR,
 });
+const addCard = record => ({
+  type: ADD_CARD,
+  record,
+});
 export const createCard = question => (dispatch, getState, api) => {
-  api.createCard(question).then(record => {
+  return api.createCard(question).then(record => {
     dispatch(addCard(record));
-  });
-  const addCard = record => ({
-    type: ADD_CARD,
-    record,
   });
 };

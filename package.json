@@ -18,6 +18,23 @@
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
+  "devDependencies": {
+    "@babel/core": "^7.16.10",
+    "@babel/plugin-syntax-flow": "^7.14.5",
+    "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@testing-library/dom": ">=7.21.4",
+    "autoprefixer": "^10.0.2",
+    "cypress": "^9.3.1",
+    "eslint": ">=7.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-cypress": "^2.12.1",
+    "eslint-plugin-jest": "^25.7.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "flush-promises": "^1.0.2",
+    "postcss": "^8.1.0",
+    "prettier": "^2.5.1",
+    "typescript": ">=2.8.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -43,21 +60,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "@babel/core": "^7.16.10",
-    "@babel/plugin-syntax-flow": "^7.14.5",
-    "@babel/plugin-transform-react-jsx": "^7.14.9",
-    "@testing-library/dom": ">=7.21.4",
-    "autoprefixer": "^10.0.2",
-    "cypress": "^9.3.1",
-    "eslint": ">=7.0.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-cypress": "^2.12.1",
-    "eslint-plugin-jest": "^25.7.0",
-    "eslint-plugin-prettier": "^3.4.1",
-    "postcss": "^8.1.0",
-    "prettier": "^2.5.1",
-    "typescript": ">=2.8.0"
   }
 }

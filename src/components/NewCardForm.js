@@ -7,7 +7,9 @@ export const NewCardForm = ({createCard}) => {
   const [question, setQuestion] = useState('');
   const handleSubmit = e => {
     e.preventDefault();
-    createCard(question);
+    createCard(question).then(() => {
+      setQuestion('');
+    });
   };
   return (
     <form onSubmit={handleSubmit}>

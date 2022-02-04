@@ -131,6 +131,7 @@ describe('cards', () => {
 
     let api;
     let store;
+    let promise;
 
     beforeEach(() => {
       api = {
@@ -152,11 +153,13 @@ describe('cards', () => {
     describe('when save succeeds', () => {
       beforeEach(() => {
         api.createCard.mockResolvedValue(responseCard);
-        store.dispatch(createCard(newCardQuestion));
+        promise = store.dispatch(createCard(newCardQuestion));
       });
-
       it('stores the returned card in the store', () => {
         expect(store.getState().records).toEqual([existingCard, responseCard]);
+      });
+      it('resolves', () => {
+        return expect(promise).resolves.toBeUndefined();
       });
     });
   });

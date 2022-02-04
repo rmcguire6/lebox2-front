@@ -9,7 +9,7 @@ const api = {
   },
   createCard(question) {
     return client
-      .post('/test_cards/', {question})
+      .post('/test_cards/', question)
       .then(response => response.data);
   },
 };
