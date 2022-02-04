@@ -25,7 +25,7 @@ describe('Creating a Card', () => {
       },
     }).as('addCard');
 
-    cy.visit('/cards/');
+    cy.visit('/test_cards/');
 
     cy.get('[placeholder="Add a Card"]').type(newCard.question);
     cy.contains('ADD').click();
