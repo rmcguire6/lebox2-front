@@ -162,5 +162,12 @@ describe('cards', () => {
         return expect(promise).resolves.toBeUndefined();
       });
     });
+    describe('when save fails', () => {
+      it('rejects', () => {
+        api.createCard.mockRejectedValue();
+        promise = store.dispatch(createCard(newCardQuestion));
+        return expect(promise).rejects.toBeUndefined();
+      });
+    });
   });
 });

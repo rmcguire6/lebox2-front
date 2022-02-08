@@ -7,19 +7,30 @@ import {createCard} from '../store/cards/actions';
 export const NewCardForm = ({createCard}) => {
   const [question, setQuestion] = useState('');
   const [validationError, setValidationError] = useState(false);
+  const [serverError, setServerError] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
     if (question) {
       setValidationError(false);
-      createCard(question).then(() => {
-        setQuestion('');
-      });
+      setServerError(false);
+      createCard(question)
+        .then(() => {
+          setQuestion('');
+        })
+        .catch(() => {
+          setServerError(true);
+        });
     } else {
       setValidationError(true);
     }
   };
   return (
     <form onSubmit={handleSubmit}>
+      {serverError && (
+        <Alert severity="error">
+          The card could not be saved. Please try again.
+        </Alert>
+      )}
       {validationError && <Alert severity="error">Question is required</Alert>}
       <TextField
         value={question}

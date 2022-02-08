@@ -20,7 +20,7 @@ describe('Creating a Card', () => {
       method: 'POST',
       url: 'http://localhost:8000/test_cards/',
       response: {
-        cardId: 1,
+        cardId: 5,
         question: newCard.question,
       },
     }).as('addCard');
@@ -30,9 +30,9 @@ describe('Creating a Card', () => {
     cy.get('[placeholder="Add a Card"]').type(newCard.question);
     cy.contains('ADD').click();
 
-    cy.wait('@addCard').its('requestBody').should('deep.equal', {
-      question: newCard.question,
-    });
+    cy.wait('@addCard')
+      .its('requestBody')
+      .should('deep.equal', newCard.question);
     cy.contains(newCard.question);
   });
 });

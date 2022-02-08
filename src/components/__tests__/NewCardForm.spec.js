@@ -6,7 +6,7 @@ import {NewCardForm} from '../NewCardForm';
 describe('NewCardForm', () => {
   const question = 'hablar';
   const requiredError = 'Question is required';
-
+  const serverError = 'The card could not be saved. Please try again.';
   let createCard;
   let context;
 
@@ -19,6 +19,10 @@ describe('NewCardForm', () => {
     it('does not display a validation error', () => {
       const {queryByText} = context;
       expect(queryByText(requiredError)).toBeNull();
+    });
+    it('does not display a server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).toBeNull();
     });
   });
   describe('when filled in', () => {
@@ -78,6 +82,44 @@ describe('NewCardForm', () => {
     it('clears the validation error', () => {
       const {queryByText} = context;
       expect(queryByText(requiredError)).toBeNull();
+    });
+  });
+  describe('when the store action rejects', () => {
+    beforeEach(async () => {
+      createCard.mockRejectedValue();
+
+      const {getByPlaceholderText, getByTestId} = context;
+
+      await userEvent.type(getByPlaceholderText('Add a Card'), question);
+      userEvent.click(getByTestId('new-card-submit-button'));
+
+      return act(flushPromises);
+    });
+
+    it('displays a server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).not.toBeNull();
+    });
+    it('does not clear the name', () => {
+      const {getByPlaceholderText} = context;
+      expect(getByPlaceholderText('Add a Card').value).toEqual(question);
+    });
+  });
+  describe('when retrying after a server error', () => {
+    beforeEach(async () => {
+      createCard.mockRejectedValueOnce().mockResolvedValueOnce();
+
+      const {getByPlaceholderText, getByTestId} = context;
+      await userEvent.type(getByPlaceholderText('Add a Card'), question);
+      userEvent.click(getByTestId('new-card-submit-button'));
+      await act(flushPromises);
+      userEvent.click(getByTestId('new-card-submit-button'));
+      return act(flushPromises);
+    });
+
+    it('clears the server error', () => {
+      const {queryByText} = context;
+      expect(queryByText(serverError)).toBeNull();
     });
   });
 });
