@@ -1,10 +1,21 @@
 import {useState} from 'react';
 import {connect} from 'react-redux';
-import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 import Alert from '@material-ui/lab/Alert';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import {makeStyles} from '@material-ui/core/styles';
 import {createCard} from '../store/cards/actions';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}));
 export const NewCardForm = ({createCard}) => {
+  const classes = useStyles();
   const [question, setQuestion] = useState('');
   const [validationError, setValidationError] = useState(false);
   const [serverError, setServerError] = useState(false);
@@ -32,21 +43,23 @@ export const NewCardForm = ({createCard}) => {
         </Alert>
       )}
       {validationError && <Alert severity="error">Question is required</Alert>}
-      <TextField
-        value={question}
-        onChange={e => setQuestion(e.target.value)}
-        placeholder="Add a Card"
-        fullWidth
-        variant="filled"
-      />
-      <Button
-        type="submit"
-        variant="contained"
-        color="primary"
-        data-testid="new-card-submit-button"
-      >
-        ADD
-      </Button>
+      <Box display="flex" className={classes.root}>
+        <TextField
+          value={question}
+          onChange={e => setQuestion(e.target.value)}
+          placeholder="Add a Card"
+          fullWidth
+          variant="filled"
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          data-testid="new-card-submit-button"
+        >
+          ADD
+        </Button>
+      </Box>
     </form>
   );
 };
