@@ -16,7 +16,11 @@ export const CardBox = ({loadCards, cards, loading, loadError}) => {
       {loadError && <Alert severity="error">Cards could not be loaded.</Alert>}
       <ul>
         {cards.map(card => (
-          <FlashCard key={card.cardId} question={card.question} />
+          <FlashCard
+            key={card.cardId}
+            answer={card.answer}
+            question={card.question}
+          />
         ))}
       </ul>
     </>
