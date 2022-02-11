@@ -1,11 +1,8 @@
 describe('Creating a Card', () => {
   it('allows adding a card', () => {
     const newCard = {
-      subject: 'Spanish',
-      question: 'hablar',
       answer: 'to speak',
-      creatorId: 1,
-      isActive: true,
+      question: 'hablar',
     };
 
     cy.server({force404: true});
