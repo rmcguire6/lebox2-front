@@ -39,7 +39,7 @@ describe('Listing Cards', () => {
       response: cardsData,
     });
 
-    cy.visit('/cards/');
+    cy.visit('/test_cards/');
     cy.contains(cardsData[0].question);
     cy.contains(cardsData[1].question);
     cy.contains(cardsData[2].question);
