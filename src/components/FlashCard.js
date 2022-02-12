@@ -1,23 +1,50 @@
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
-
-export const FlashCard = ({answer, question}) => (
-  <>
-    <Card>
-      <CardContent>
-        <Typography variant="h5">{question}</Typography>
-        <Typography variant="h5">{answer}</Typography>
-        <Button
-          variant="contained"
-          color="primary"
-          data-testid="new-card-submit-button"
-        >
-          ANSWER
-        </Button>
-      </CardContent>
-    </Card>
-  </>
-);
+import {useState} from 'react';
+import {Box, Button, Typography} from '@material-ui/core';
+export const FlashCard = ({answer, question}) => {
+  const [isAnswerVisible, setIsAnswerVisible] = useState(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    setIsAnswerVisible(true);
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <Typography variant="h5">{question}</Typography>
+      {isAnswerVisible && (
+        <>
+          <Typography variant="h5">{answer}</Typography>
+          <Box>
+            <Typography variant="h6">Correct?</Typography>
+            <Button
+              type="submit"
+              variant="outlined"
+              color="primary"
+              size="small"
+              data-testid="yes-submit-button"
+            >
+              YES
+            </Button>
+            <Button
+              type="submit"
+              variant="outlined"
+              color="primary"
+              size="small"
+              data-testid="no-submit-button"
+            >
+              NO
+            </Button>
+          </Box>
+        </>
+      )}
+      <Button
+        type="submit"
+        variant="outlined"
+        color="primary"
+        size="small"
+        data-testid="answer-submit-button"
+      >
+        ANSWER
+      </Button>
+    </form>
+  );
+};
 export default FlashCard;

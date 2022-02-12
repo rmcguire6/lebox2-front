@@ -30,8 +30,7 @@ describe('Answering a Card', () => {
         isActive: true,
       },
     ];
-    const isCorrect = true;
-
+    let numCorrect = 0;
     cy.server({force404: true});
 
     cy.route({
@@ -44,6 +43,10 @@ describe('Answering a Card', () => {
 
     cy.contains('ANSWER').click();
     cy.contains(cardsData[0].answer);
-    cy.contains('CORRECT?').click().type(isCorrect);
+    cy.contains('Correct?');
+    cy.contains('YES')
+      .click()
+      .type(numCorrect + 1);
+    cy.contains('NO').click().type(numCorrect);
   });
 });
