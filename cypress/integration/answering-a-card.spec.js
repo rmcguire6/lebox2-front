@@ -1,33 +1,12 @@
 describe('Answering a Card', () => {
   it('allows clicking a card to see the answer', () => {
     const cardsData = [
+      {card_id: 1, question: 'vivir', answer: 'to live'},
+      {card_id: 2, question: 'tomar', answer: 'to take'},
       {
-        subject: 'Spanish',
-        question: 'vivir',
-        answer: 'to live',
-        creatorId: 1,
-        isActive: true,
-      },
-      {
-        subject: 'Spanish',
-        question: 'tomar',
-        answer: 'to take',
-        creatorId: 1,
-        isActive: true,
-      },
-      {
-        subject: 'Spanish',
+        card_id: 3,
         question: 'comer',
         answer: 'to eat',
-        creatorId: 1,
-        isActive: true,
-      },
-      {
-        subject: 'Spanish',
-        question: 'escribir',
-        answer: 'to write',
-        creatorId: 1,
-        isActive: true,
       },
     ];
     let numCorrect = 0;

@@ -4,7 +4,7 @@ import {CardBox} from '../CardBox';
 describe('CardBox', () => {
   const cards = [
     {
-      cardId: 1,
+      card_id: 1,
       subject: 'Spanish',
       question: 'vivir',
       answer: 'to live',
@@ -12,7 +12,7 @@ describe('CardBox', () => {
       isActive: true,
     },
     {
-      cardId: 2,
+      card_id: 2,
       subject: 'Spanish',
       question: 'tomar',
       answer: 'to take',
@@ -20,7 +20,7 @@ describe('CardBox', () => {
       isActive: true,
     },
     {
-      cardId: 3,
+      card_id: 3,
       subject: 'Spanish',
       question: 'comer',
       answer: 'to eat',
@@ -28,7 +28,7 @@ describe('CardBox', () => {
       isActive: true,
     },
     {
-      cardId: 4,
+      card_id: 4,
       subject: 'Spanish',
       question: 'escribir',
       answer: 'to write',

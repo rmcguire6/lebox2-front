@@ -1,7 +1,5 @@
 import {useEffect} from 'react';
 import {connect} from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Alert from '@material-ui/lab/Alert';
 import {loadCards} from '../store/cards/actions';
 import FlashCard from '../components/FlashCard';
 
@@ -12,16 +10,18 @@ export const CardBox = ({loadCards, cards, loading, loadError}) => {
   return (
     <>
       <h2>Cards</h2>
-      {loading && <CircularProgress data-testid="loading-indicator" />}
-      {loadError && <Alert severity="error">Cards could not be loaded.</Alert>}
+      {loading && <p data-testid="loading-indicator">Loading...</p>}
+      {loadError && <p>Cards could not be loaded.</p>}
       <ul>
-        {cards.map(card => (
-          <FlashCard
-            key={card.cardId}
-            answer={card.answer}
-            question={card.question}
-          />
-        ))}
+        {cards.map(card => {
+          return (
+            <FlashCard
+              key={card.card_id}
+              answer={card.answer}
+              question={card.question}
+            />
+          );
+        })}
       </ul>
     </>
   );
