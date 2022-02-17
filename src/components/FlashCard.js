@@ -5,23 +5,29 @@ export const FlashCard = ({answer, question}) => {
     e.preventDefault();
     setIsAnswerVisible(true);
   };
-  return (
-    <form onSubmit={handleSubmit}>
-      <p>{question}</p>
-      {isAnswerVisible && (
-        <>
-          <p>{answer}</p>
-          <p>Correct?</p>
 
-          <button type="submit">YES</button>
-          <button type="submit"> NO</button>
-        </>
+  return (
+    <>
+      <form onSubmit={handleSubmit}>
+        <p>{question}</p>
+        {isAnswerVisible ? (
+          <>
+            <p>{answer}</p>
+            <p>Correct?</p>
+          </>
+        ) : (
+          <button type="submit" data-testid="answer-submit-button">
+            Answer
+          </button>
+        )}
+      </form>
+      {isAnswerVisible && (
+        <form>
+          <button type="submit">Yes</button>
+          <button type="submit">No</button>
+        </form>
       )}
-      <br />
-      <button type="submit" data-testid="answer-submit-button">
-        ANSWER
-      </button>
-    </form>
+    </>
   );
 };
 export default FlashCard;
