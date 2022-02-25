@@ -5,11 +5,18 @@ import {FlashCard} from '../FlashCard';
 describe('FlashCard', () => {
   let answer = 'to draw';
   let question = 'dibujar';
+  const handleCorrect = jest.fn();
   let context;
 
   describe('initially ', () => {
     beforeEach(() => {
-      context = render(<FlashCard answer={answer} question={question} />);
+      context = render(
+        <FlashCard
+          answer={answer}
+          question={question}
+          handleCorrect={handleCorrect}
+        />,
+      );
     });
     it('does not display Correct?', () => {
       const {queryByText} = context;
@@ -42,11 +49,11 @@ describe('FlashCard', () => {
       const {queryByText} = context;
       expect(queryByText('Answer')).toBeNull();
     });
-    it('displays the YES button', () => {
+    it('displays the Yes button', () => {
       const {queryByText} = context;
       expect(queryByText('Yes')).not.toBeNull();
     });
-    it('displays the NO button', () => {
+    it('displays the No button', () => {
       const {queryByText} = context;
       expect(queryByText('No')).not.toBeNull();
     });

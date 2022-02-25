@@ -1,5 +1,5 @@
 import {useState} from 'react';
-export const FlashCard = ({answer, question}) => {
+export const FlashCard = ({answer, question, handleCorrect}) => {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
@@ -22,12 +22,17 @@ export const FlashCard = ({answer, question}) => {
         )}
       </form>
       {isAnswerVisible && (
-        <form>
-          <button type="submit">Yes</button>
-          <button type="submit">No</button>
-        </form>
+        <>
+          <form onSubmit={handleCorrect}>
+            <button type="submit">Yes</button>
+          </form>
+          <form>
+            <button type="submit">No</button>
+          </form>
+        </>
       )}
     </>
   );
 };
+
 export default FlashCard;
