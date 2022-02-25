@@ -1,70 +1,50 @@
-# Getting Started with Create React App
+# LEITNER BOX Version 2
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Leitner box is a tool for using spaced repetition to memorize and remember anything forever.
 
-In the project directory, you can run:
+This app takes a very simple approach.
 
-### `npm start`
+A first time user inputs a username, and a password to sign up.
+After login or sign up the user goes to the Cards page and adds as many new cards as they wish. New cards start at level 1.
+When they are done adding new cards they answer that day's cards.
+As cards are answered correctly they move up one level and disappear.
+If a card is answered incorrectly it moves (back) to level 1 and is shown again until it is answered correctly.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+When all cards are correctly remembered the user sees an ending message with congratulations, statistics on how many cards were gotten right the first time, and a reminder to do it again tomorrow.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When returning to the app the user must log in with username and password before going to the card box page.
 
-### `npm test`
+The Leitner spacing used has 7 levels and 64 days.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Level 1 everyday
+- Level 2 every other day
+- Level 3 every 4th day starting on the 2nd
+- Level 4 every 4th and 13th day of every 16 days
+- Level 5 every 12th day of every 16 days
+- Level 6 the 24th and 59th day
+- Level 7 the 56th day
+- Cards are retired after Level 7
 
-### `npm run build`
+## Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- The user can create their user settings: their username and password.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- The user can create their new cards which are verified by the user and immediately saved to the database.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- The user can use their cards to memorize by remembering the answer, clicking the Answer button to see the correct answer, and marking Yes or No. If the user answers wrong the card is put into the undone queue.
 
-### `npm run eject`
+- When the user answers all current cards correctly the user sees congratulations, statistics on how many cards they got correct the first time, and a reminder to memorize again tomorrow.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Project Status
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [x] CreateReactApp boilerplate
+- [x] TDD develop listing cards component
+- [x] TDD develop creating a card component
+- [x] TDD develop answering a card actions
+- [] TDD end of session information
+- [] TDD selecting a day's cards
+- [] TDD user sign up
+- [] TDD user log in
+- [] TDD user log out
