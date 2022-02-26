@@ -22,9 +22,11 @@
     "@babel/core": "^7.16.10",
     "@babel/plugin-syntax-flow": "^7.14.5",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
+    "@cypress/react": "^5.12.3",
+    "@cypress/webpack-dev-server": "^1.8.1",
     "@testing-library/dom": ">=7.21.4",
     "autoprefixer": "^10.0.2",
-    "cypress": "9.4.1",
+    "cypress": "^9.5.0",
     "eslint": ">=7.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-cypress": "^2.12.1",
@@ -32,9 +34,12 @@
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-testing-library": "^5.0.5",
     "flush-promises": "^1.0.2",
+    "html-webpack-plugin": "^5.5.0",
     "postcss": "^8.1.0",
     "prettier": "^2.5.1",
-    "typescript": ">=2.8.0"
+    "typescript": ">=2.8.0",
+    "webpack": "^5.20.0",
+    "webpack-dev-server": "^4.7.4"
   },
   "scripts": {
     "start": "react-scripts start",
