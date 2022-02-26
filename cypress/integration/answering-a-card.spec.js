@@ -19,10 +19,10 @@ describe('Answering a Card', () => {
 
     cy.visit('/test_cards/');
 
-    cy.contains('ANSWER').click();
+    cy.contains('Answer').click();
     cy.contains(cardsData[0].answer);
     cy.contains('Correct?');
-    cy.contains('YES').click();
-    cy.contains('NO').click();
+    cy.contains('Yes').click();
+    cy.contains('No').click();
   });
 });
