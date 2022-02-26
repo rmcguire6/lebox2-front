@@ -3,18 +3,19 @@ import {connect} from 'react-redux';
 import {createCard} from '../store/cards/actions';
 
 export const NewCardForm = ({createCard}) => {
-  // const classes = useStyles();
   const [question, setQuestion] = useState('');
+  const [answer, setAnswer] = useState('');
   const [validationError, setValidationError] = useState(false);
   const [serverError, setServerError] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
-    if (question) {
+    if (question && answer) {
       setValidationError(false);
       setServerError(false);
-      createCard(question)
+      createCard(question, answer)
         .then(() => {
           setQuestion('');
+          setAnswer('');
         })
         .catch(() => {
           setServerError(true);
@@ -25,14 +26,18 @@ export const NewCardForm = ({createCard}) => {
   };
   return (
     <form onSubmit={handleSubmit}>
-      {serverError && (
-        <p severity="error">The card could not be saved. Please try again.</p>
-      )}
-      {validationError && <p severity="error">Question is required</p>}
+      {serverError && <p>The card could not be saved. Please try again.</p>}
+      {validationError && <p>Question and answer are required</p>}
       <input
         value={question}
         onChange={e => setQuestion(e.target.value)}
-        placeholder="Add a Card"
+        placeholder="Add a Question"
+      />
+      <br />
+      <input
+        value={answer}
+        onChange={e => setAnswer(e.target.value)}
+        placeholder="Add an Answer"
       />
       <button data-testid="new-card-submit-button">ADD</button>
     </form>

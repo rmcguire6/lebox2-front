@@ -26,8 +26,8 @@ const addCard = record => ({
   type: ADD_CARD,
   record,
 });
-export const createCard = question => (dispatch, getState, api) => {
-  return api.createCard(question).then(record => {
+export const createCard = (question, answer) => (dispatch, getState, api) => {
+  return api.createCard(question, answer).then(record => {
     dispatch(addCard(record));
   });
 };

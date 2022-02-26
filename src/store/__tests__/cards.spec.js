@@ -21,36 +21,24 @@ describe('cards', () => {
     describe('when loading succeeds', () => {
       const records = [
         {
-          cardId: 1,
-          subject: 'Spanish',
+          card_id: 1,
           question: 'vivir',
           answer: 'to live',
-          creatorId: 1,
-          isActive: true,
         },
         {
-          cardId: 2,
-          subject: 'Spanish',
+          card_id: 2,
           question: 'tomar',
           answer: 'to take',
-          creatorId: 1,
-          isActive: true,
         },
         {
-          cardId: 3,
-          subject: 'Spanish',
+          card_id: 3,
           question: 'comer',
           answer: 'to eat',
-          creatorId: 1,
-          isActive: true,
         },
         {
-          cardId: 4,
-          subject: 'Spanish',
+          card_id: 4,
           question: 'escribir',
           answer: 'to write',
-          creatorId: 1,
-          isActive: true,
         },
       ];
       let store;
@@ -126,8 +114,9 @@ describe('cards', () => {
   });
   describe('createCard action', () => {
     const newCardQuestion = 'hablar';
-    const existingCard = {cardId: 1, question: 'vivir'};
-    const responseCard = {cardId: 5, question: 'hablar'};
+    const newCardAnswer = 'to speak';
+    const existingCard = {card_id: 1, question: 'vivir', answer: 'to live'};
+    const responseCard = {card_id: 5, question: 'hablar', answer: 'to speak'};
 
     let api;
     let store;
@@ -147,13 +136,16 @@ describe('cards', () => {
     });
     it('saves the card to the server', () => {
       api.createCard.mockResolvedValue(responseCard);
-      store.dispatch(createCard(newCardQuestion));
-      expect(api.createCard).toHaveBeenCalledWith(newCardQuestion);
+      store.dispatch(createCard(newCardQuestion, newCardAnswer));
+      expect(api.createCard).toHaveBeenCalledWith(
+        newCardQuestion,
+        newCardAnswer,
+      );
     });
     describe('when save succeeds', () => {
       beforeEach(() => {
         api.createCard.mockResolvedValue(responseCard);
-        promise = store.dispatch(createCard(newCardQuestion));
+        promise = store.dispatch(createCard(newCardQuestion, newCardAnswer));
       });
       it('stores the returned card in the store', () => {
         expect(store.getState().records).toEqual([existingCard, responseCard]);
@@ -165,7 +157,7 @@ describe('cards', () => {
     describe('when save fails', () => {
       it('rejects', () => {
         api.createCard.mockRejectedValue();
-        promise = store.dispatch(createCard(newCardQuestion));
+        promise = store.dispatch(createCard(newCardQuestion, newCardAnswer));
         return expect(promise).rejects.toBeUndefined();
       });
     });

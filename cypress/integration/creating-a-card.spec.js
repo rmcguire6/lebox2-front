@@ -17,19 +17,19 @@ describe('Creating a Card', () => {
       method: 'POST',
       url: 'http://localhost:8000/test_cards/',
       response: {
-        cardId: 5,
+        card_id: 5,
         question: newCard.question,
+        answer: newCard.answer,
       },
     }).as('addCard');
 
     cy.visit('/test_cards/');
 
-    cy.get('[placeholder="Add a Card"]').type(newCard.question);
+    cy.get('[placeholder="Add a Question"]').type(newCard.question);
+    cy.get('[placeholder="Add an Answer"]').type(newCard.answer);
     cy.contains('ADD').click();
 
-    cy.wait('@addCard')
-      .its('requestBody')
-      .should('deep.equal', newCard.question);
+    cy.wait('@addCard');
     cy.contains(newCard.question);
   });
 });

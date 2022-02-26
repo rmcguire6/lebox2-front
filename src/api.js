@@ -7,9 +7,9 @@ const api = {
   loadCards() {
     return client.get('/test_cards/').then(response => response.data);
   },
-  createCard(question) {
+  createCard(question, answer) {
     return client
-      .post('/test_cards/', question)
+      .post('/test_cards/', {question, answer})
       .then(response => response.data);
   },
 };
