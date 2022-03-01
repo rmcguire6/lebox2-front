@@ -5,7 +5,10 @@ export const FlashCard = ({answer, question, handleCorrect}) => {
     e.preventDefault();
     setIsAnswerVisible(true);
   };
-
+  const handleWrong = e => {
+    e.preventDefault();
+    setIsAnswerVisible(false);
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -26,7 +29,7 @@ export const FlashCard = ({answer, question, handleCorrect}) => {
           <form onSubmit={handleCorrect}>
             <button type="submit">Yes</button>
           </form>
-          <form>
+          <form onSubmit={handleWrong}>
             <button type="submit">No</button>
           </form>
         </>
