@@ -19,7 +19,7 @@ export const FlashCard = ({answer, question, handleCorrect}) => {
             <p>Correct?</p>
           </>
         ) : (
-          <button type="submit" data-testid="answer-submit-button">
+          <button type="submit" className="answer-submit-button">
             Answer
           </button>
         )}

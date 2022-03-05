@@ -34,8 +34,8 @@ describe('FlashCard', () => {
   describe('after the ANSWER button is clicked', () => {
     beforeEach(() => {
       context = render(<FlashCard answer={answer} question={question} />);
-      const {getByTestId} = context;
-      userEvent.click(getByTestId('answer-submit-button'));
+      const {getByText} = context;
+      userEvent.click(getByText('Answer'));
     });
     it('displays Correct?', () => {
       const {queryByText} = context;
