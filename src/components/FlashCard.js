@@ -1,9 +1,10 @@
 import {useState} from 'react';
-export const FlashCard = ({answer, question, handleCorrect}) => {
+
+export const FlashCard = ({answer, question, handleCorrect, card_id}) => {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
-    setIsAnswerVisible(true);
+    setIsAnswerVisible(v => !v);
   };
   const handleWrong = e => {
     e.preventDefault();
@@ -12,26 +13,23 @@ export const FlashCard = ({answer, question, handleCorrect}) => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <p>{question}</p>
-        {isAnswerVisible ? (
-          <>
-            <p>{answer}</p>
-            <p>Correct?</p>
-          </>
-        ) : (
-          <button type="submit" className="answer-submit-button">
-            Answer
-          </button>
-        )}
+        {isAnswerVisible ? <p>{answer}</p> : <p>{question}</p>}
+
+        <button type="submit" className="answer-submit-button">
+          {isAnswerVisible ? 'Correct?' : 'Answer'}
+        </button>
       </form>
       {isAnswerVisible && (
         <>
-          <form onSubmit={handleCorrect}>
-            <button type="submit">Yes</button>
-          </form>
-          <form onSubmit={handleWrong}>
-            <button type="submit">No</button>
-          </form>
+          <div>
+            <form onSubmit={e => handleCorrect(e)}>
+              <button type="submit">Yes</button>
+            </form>
+
+            <form onSubmit={handleWrong}>
+              <button type="submit">No</button>
+            </form>
+          </div>
         </>
       )}
     </>
