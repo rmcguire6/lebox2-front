@@ -1,28 +1,13 @@
 describe('Answering a Card', () => {
-  it('allows clicking a card to see the answer', () => {
-    const cardsData = [
-      {card_id: 1, question: 'vivir', answer: 'to live'},
-      {card_id: 2, question: 'tomar', answer: 'to take'},
-      {
-        card_id: 3,
-        question: 'comer',
-        answer: 'to eat',
-      },
-    ];
-    cy.server({force404: true});
-
-    cy.route({
-      method: 'GET',
-      url: 'http://localhost:8000/test_cards/',
-      response: cardsData,
-    });
-
+  beforeEach(() => {
     cy.visit('/test_cards/');
-
+  });
+  it('allows clicking a card to see the answer', () => {
     cy.contains('Answer').click();
-    cy.contains(cardsData[0].answer);
     cy.contains('Correct?');
+    cy.get('p').should('have.length', 4);
+    cy.contains('No');
     cy.contains('Yes').click();
-    cy.contains('No').click();
+    cy.get('p').should('have.length', 3);
   });
 });
