@@ -1,6 +1,6 @@
 import {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {loadCards} from '../store/cards/actions';
+import {loadCards, deleteCard} from '../store/cards/actions';
 import FlashCard from '../components/FlashCard';
 
 export const CardBox = ({loadCards, cards, loading, loadError, deleteCard}) => {
@@ -20,6 +20,7 @@ export const CardBox = ({loadCards, cards, loading, loadError, deleteCard}) => {
               key={card.card_id}
               answer={card.answer}
               question={card.question}
+              deleteCard={deleteCard}
             />
           );
         })}
@@ -33,5 +34,5 @@ const mapStateToProps = state => ({
   loading: state.cards.loading,
   loadError: state.cards.loadError,
 });
-const mapDispatchToProps = {loadCards};
+const mapDispatchToProps = {loadCards, deleteCard};
 export default connect(mapStateToProps, mapDispatchToProps)(CardBox);

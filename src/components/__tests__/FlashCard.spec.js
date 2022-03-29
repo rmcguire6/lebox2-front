@@ -5,18 +5,11 @@ import {FlashCard} from '../FlashCard';
 describe('FlashCard', () => {
   let answer = 'to draw';
   let question = 'dibujar';
-  const handleCorrect = jest.fn();
   let context;
 
   describe('initially ', () => {
     beforeEach(() => {
-      context = render(
-        <FlashCard
-          answer={answer}
-          question={question}
-          handleCorrect={handleCorrect}
-        />,
-      );
+      context = render(<FlashCard answer={answer} question={question} />);
     });
     it('does not display Correct?', () => {
       const {queryByText} = context;

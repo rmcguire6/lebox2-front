@@ -1,13 +1,15 @@
 import {useState} from 'react';
 
-export const FlashCard = ({answer, question, handleCorrect, card_id}) => {
+export const FlashCard = ({answer, question, card_id, deleteCard}) => {
   const [isAnswerVisible, setIsAnswerVisible] = useState(false);
   const handleSubmit = e => {
     e.preventDefault();
     setIsAnswerVisible(v => !v);
   };
-  const handleWrong = e => {
-    e.preventDefault();
+  const handleCorrect = () => {
+    deleteCard(card_id);
+  };
+  const handleWrong = () => {
     setIsAnswerVisible(false);
   };
   return (
@@ -22,7 +24,7 @@ export const FlashCard = ({answer, question, handleCorrect, card_id}) => {
       {isAnswerVisible && (
         <>
           <div>
-            <form onSubmit={e => handleCorrect(e)}>
+            <form onSubmit={() => handleCorrect()}>
               <button type="submit">Yes</button>
             </form>
 
