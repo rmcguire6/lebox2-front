@@ -1,17 +1,13 @@
-import {useEffect, useState} from 'react';
+import {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {loadCards} from '../store/cards/actions';
 import FlashCard from '../components/FlashCard';
 
-export const CardBox = ({loadCards, cards, loading, loadError}) => {
-  const [numberCorrect, setNumberCorrect] = useState(0);
+export const CardBox = ({loadCards, cards, loading, loadError, deleteCard}) => {
   useEffect(() => {
     loadCards();
   }, [loadCards]);
-  const handleCorrect = e => {
-    e.preventDefault();
-    setNumberCorrect(previous => previous + 1);
-  };
+
   return (
     <>
       <h2>Cards</h2>
@@ -24,19 +20,10 @@ export const CardBox = ({loadCards, cards, loading, loadError}) => {
               key={card.card_id}
               answer={card.answer}
               question={card.question}
-              handleCorrect={handleCorrect}
             />
           );
         })}
       </ul>
-      {numberCorrect > 0 ? (
-        <>
-          <h3>Cards Answered Correctly</h3>
-          <p>{numberCorrect}</p>
-        </>
-      ) : (
-        <></>
-      )}
     </>
   );
 };
