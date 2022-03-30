@@ -1,7 +1,7 @@
 import {createStore, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
 import cardsReducer from '../cards/reducers';
-import {loadCards, createCard} from '../cards/actions';
+import {loadCards, createCard, REMOVE_CARD} from '../cards/actions';
 describe('cards', () => {
   describe('initially', () => {
     let store;
@@ -160,6 +160,21 @@ describe('cards', () => {
         promise = store.dispatch(createCard(newCardQuestion, newCardAnswer));
         return expect(promise).rejects.toBeUndefined();
       });
+    });
+  });
+  describe('delete Card action', () => {
+    it('deletes the card from the cards array', () => {
+      let result;
+      const initialState = {
+        loading: false,
+        loadError: false,
+        records: [
+          {card_id: 1, question: 'to drive', answer: 'montar', level: 1},
+        ],
+      };
+      const action = {type: REMOVE_CARD, card_id: 1};
+      result = cardsReducer(initialState, action);
+      expect(result).toEqual({loading: false, loadError: false, records: []});
     });
   });
 });
