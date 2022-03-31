@@ -1,9 +1,9 @@
 import FlashCard from '../components/FlashCard';
 
 const CardBox = props => (
-  <ul>
+  <ul className="cards-list">
     {props.cards.map(card => (
-      <FlashCard />
+      <FlashCard question={card.question} />
     ))}
   </ul>
 );

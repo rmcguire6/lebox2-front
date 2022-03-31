@@ -1,7 +1,7 @@
-export const FlashCard = () => {
+export const FlashCard = ({question}) => {
   return (
     <>
-      <li>Question Goes Here</li>
+      <li>{question}</li>
     </>
   );
 };

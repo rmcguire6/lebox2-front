@@ -6,14 +6,14 @@ const App = () => {
   const [cards, setCards] = useState([]);
   const [newCard, setNewCard] = useState({question: ''});
   const handleNewCardChange = e => {
-    setNewCard({question: e.target.value});
+    const {name, value} = e.target;
+    setNewCard({
+      ...newCard,
+      [name]: value,
+    });
   };
   const handleNewCardSubmit = e => {
     e.preventDefault();
-    setNewCard(previousState => {
-      return {...previousState, answer: '?'};
-    });
-    console.log(newCard);
     saveCard(newCard).then(({data}) =>
       setCards(previousState => {
         return {...previousState, newCard};

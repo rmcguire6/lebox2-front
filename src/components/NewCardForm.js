@@ -4,19 +4,30 @@ export const NewCardForm = ({
   newCard,
 }) => {
   return (
-    <form onSubmit={handleNewCardSubmit}>
-      <input
-        className="question"
-        type="text"
-        value={newCard.question}
-        autoFocus
-        onChange={handleNewCardChange}
-        placeholder="Add a Question"
-      />
-      <br />
-      <input type="text" placeholder="Add an Answer" />
-      <button>Answer</button>
-    </form>
+    <>
+      <h2>Add a Card</h2>
+      <form className=".newCard" onSubmit={handleNewCardSubmit}>
+        <input
+          type="text"
+          name="question"
+          value={newCard.question}
+          className="question"
+          autoFocus
+          onChange={handleNewCardChange}
+          placeholder="Add a Question"
+        />
+        <br />
+        <input
+          type="text"
+          name="answer"
+          value={newCard.answer}
+          className="answer"
+          onChange={handleNewCardChange}
+          placeholder="Add an Answer"
+        />
+        <button className="newCard_button">Submit</button>
+      </form>
+    </>
   );
 };
 
