@@ -5,8 +5,13 @@ describe('Input card form', () => {
   it('focuses input on load', () => {
     cy.focused().should('have.class', 'question');
   });
-  it.only('accepts input', () => {
+  it('accepts input', () => {
     const typedQuestion = 'hablar';
     cy.get('.question').type(typedQuestion).should('have.value', typedQuestion);
+  });
+  context('New Card Form submission', () => {
+    it.only('Adds a  new card on submit', () => {
+      cy.get('.question').type('vivir').type('{enter}').click();
+    });
   });
 });

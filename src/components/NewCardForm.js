@@ -1,6 +1,10 @@
-export const NewCardForm = ({handleNewCardChange, newCard}) => {
+export const NewCardForm = ({
+  handleNewCardChange,
+  handleNewCardSubmit,
+  newCard,
+}) => {
   return (
-    <form>
+    <form onSubmit={handleNewCardSubmit}>
       <input
         className="question"
         type="text"
@@ -11,6 +15,7 @@ export const NewCardForm = ({handleNewCardChange, newCard}) => {
       />
       <br />
       <input type="text" placeholder="Add an Answer" />
+      <button>Answer</button>
     </form>
   );
 };
