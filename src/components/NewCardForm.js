@@ -1,7 +1,14 @@
-export const NewCardForm = () => {
+export const NewCardForm = ({handleNewCardChange, newCard}) => {
   return (
     <form>
-      <input type="text" placeholder="Add a Question" />
+      <input
+        className="question"
+        type="text"
+        value={newCard.question}
+        autoFocus
+        onChange={handleNewCardChange}
+        placeholder="Add a Question"
+      />
       <br />
       <input type="text" placeholder="Add an Answer" />
     </form>
