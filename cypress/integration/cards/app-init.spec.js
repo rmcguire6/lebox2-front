@@ -3,7 +3,7 @@ describe('App initialization', () => {
     cy.seedAndVisit();
     cy.get('.cards-list li').should('have.length', 3);
   });
-  it.only('Displays an error on loading failure', () => {
+  it('Displays an error on loading failure', () => {
     cy.server();
     cy.route({
       url: '/api/cards',
