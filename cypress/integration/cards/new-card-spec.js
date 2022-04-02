@@ -14,6 +14,12 @@ describe('Input card form', () => {
   });
   context('new card form submission', () => {
     it.only('Adds a new card on submit', () => {
+      cy.server();
+      cy.route('POST', '/api/cards', {
+        card_id: 9999,
+        question: typedQuestion,
+        answer: typedAnswer,
+      });
       cy.get('.question').type(typedQuestion);
       cy.get('.answer').type(typedAnswer);
       cy.get('.newCard_button').click();
