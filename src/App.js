@@ -16,7 +16,7 @@ const App = () => {
     e.preventDefault();
     saveCard(newCard).then(({data}) =>
       setCards(previousState => {
-        return {...previousState, newCard};
+        return {...previousState, data};
       }),
     );
   };
