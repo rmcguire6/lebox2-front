@@ -1,7 +1,10 @@
-export const FlashCard = ({question}) => {
+export const FlashCard = props => {
   return (
     <>
-      <li>{question}</li>
+      <li>
+        {props.question}
+        {props.answer}
+      </li>
     </>
   );
 };
