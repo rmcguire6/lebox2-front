@@ -6,7 +6,7 @@ export const NewCardForm = ({
   return (
     <>
       <h2>Add a Card</h2>
-      <form className=".newCard" onSubmit={handleNewCardSubmit}>
+      <form className="newCard" onSubmit={handleNewCardSubmit}>
         <input
           type="text"
           name="question"

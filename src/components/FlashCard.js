@@ -2,8 +2,7 @@ export const FlashCard = props => {
   return (
     <>
       <li>
-        {props.question}
-        {props.answer}
+        {props.question}--{props.answer}
       </li>
     </>
   );

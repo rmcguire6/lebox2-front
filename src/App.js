@@ -2,10 +2,12 @@ import {useState, useEffect} from 'react';
 import {saveCard, loadCards} from './services/api';
 import CardBox from './pages/CardBox';
 import NewCardForm from './components/NewCardForm';
+
 const App = () => {
   const [cards, setCards] = useState([]);
   const [newCard, setNewCard] = useState({question: '', answer: ''});
   const [loadingError, setLoadingError] = useState(false);
+
   useEffect(() => {
     loadCards()
       .then(({data}) => setCards(data))
@@ -27,6 +29,7 @@ const App = () => {
       }),
     );
   };
+
   return (
     <>
       <h1>Welcome to the Leitner Box</h1>
