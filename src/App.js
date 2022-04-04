@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react';
-import {saveCard, loadCards} from './services/api';
+import {loadCards, saveCard} from './services/api';
 import CardBox from './pages/CardBox';
 import NewCardForm from './components/NewCardForm';
 
@@ -11,8 +11,8 @@ const App = () => {
   useEffect(() => {
     loadCards()
       .then(({data}) => setCards(data))
-      .catch(() => setLoadingError(true));
-  });
+      .catch(error => setLoadingError(true));
+  }, []);
   const handleNewCardChange = e => {
     const {name, value} = e.target;
     setNewCard({
@@ -23,10 +23,9 @@ const App = () => {
 
   const handleNewCardSubmit = e => {
     e.preventDefault();
+    console.log(newCard);
     saveCard(newCard).then(({data}) =>
-      setCards(previousState => {
-        return {...previousState, data};
-      }),
+      setCards(previousState => previousState.concat(data)),
     );
   };
 
