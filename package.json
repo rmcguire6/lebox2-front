@@ -2,6 +2,7 @@
   "name": "lebox2-front",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8000",
   "dependencies": {
     "axios": "^0.25.0",
     "react": "^17.0.2",
