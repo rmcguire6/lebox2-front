@@ -25,7 +25,7 @@ describe('Input card form', () => {
       cy.get('.question').type(typedQuestion);
       cy.get('.answer').type(typedAnswer);
       cy.get('.newCard_button').click().should('have.value', '');
-      cy.get('.cards-list li')
+      cy.get('.cards-list p')
         .should('have.length', 1)
         .and('contain', typedQuestion);
     });
@@ -40,7 +40,7 @@ describe('Input card form', () => {
       cy.get('.answer');
       cy.get('.newCard_button').click();
 
-      cy.get('.cards-list li').should('not.exist');
+      cy.get('.cards-list').should('have.length', 1);
       cy.get('.submission-error').should('be.visible');
     });
   });

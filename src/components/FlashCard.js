@@ -1,9 +1,7 @@
 export const FlashCard = props => {
   return (
     <>
-      <li>
-        {props.question}--{props.answer}
-      </li>
+      <p style={{listStyle: 'none'}}>{props.question}</p>
     </>
   );
 };

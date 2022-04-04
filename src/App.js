@@ -5,6 +5,7 @@ import NewCardForm from './components/NewCardForm';
 
 const App = () => {
   const [cards, setCards] = useState([]);
+  const [visibleCards, setVisibleCards] = useState([]);
   const [newCard, setNewCard] = useState({question: '', answer: ''});
   const [loadingError, setLoadingError] = useState('');
   const [submissionError, setSubmissionError] = useState('');
@@ -14,6 +15,9 @@ const App = () => {
       .then(({data}) => setCards(data))
       .catch(() => setLoadingError('Cards did not load'));
   }, []);
+  useEffect(() => {
+    setVisibleCards(cards);
+  }, [cards]);
   const handleNewCardChange = e => {
     const {name, value} = e.target;
     setNewCard({
@@ -36,9 +40,9 @@ const App = () => {
       <h1>Welcome to the Leitner Box</h1>
       {loadingError ? (
         <span className="loading-error">{loadingError}</span>
-      ) : null}
-
-      <CardBox cards={cards} />
+      ) : (
+        <CardBox cards={visibleCards} />
+      )}
       <NewCardForm
         newCard={newCard}
         handleNewCardChange={handleNewCardChange}

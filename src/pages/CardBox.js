@@ -1,13 +1,14 @@
+import {useState} from 'react';
 import FlashCard from '../components/FlashCard';
 
 const CardBox = props => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   return (
     <>
-      <ul className="cards-list">
-        {props.cards.map(card => (
-          <FlashCard key={card.card_id} {...card} />
-        ))}
-      </ul>
+      <div className="cards-list">
+        <FlashCard {...props.cards[currentIndex]} />
+      </div>
     </>
   );
 };
