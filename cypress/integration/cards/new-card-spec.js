@@ -1,7 +1,7 @@
 describe('Input card form', () => {
   let typedQuestion, typedAnswer;
   beforeEach(() => {
-    cy.visit('/');
+    cy.seedAndVisit([]);
     typedQuestion = 'hablar';
     typedAnswer = 'to speak';
   });
@@ -13,8 +13,10 @@ describe('Input card form', () => {
     cy.get('.answer').type(typedAnswer).should('have.value', typedAnswer);
   });
   context('new card form submission', () => {
-    it.only('Adds a new card on submit', () => {
+    beforeEach(() => {
       cy.server();
+    });
+    it('Adds a new card on submit', () => {
       cy.route('POST', '/api/cards', {
         card_id: 9999,
         question: typedQuestion,
@@ -22,7 +24,24 @@ describe('Input card form', () => {
       });
       cy.get('.question').type(typedQuestion);
       cy.get('.answer').type(typedAnswer);
+      cy.get('.newCard_button').click().should('have.value', '');
+      cy.get('.cards-list li')
+        .should('have.length', 1)
+        .and('contain', typedQuestion);
+    });
+    it('Shows an error message on a failed submission', () => {
+      cy.route({
+        url: '/api/cards',
+        method: 'POST',
+        status: 500,
+        response: {},
+      });
+      cy.get('.question');
+      cy.get('.answer');
       cy.get('.newCard_button').click();
+
+      cy.get('.cards-list li').should('not.exist');
+      cy.get('.submission-error').should('be.visible');
     });
   });
 });

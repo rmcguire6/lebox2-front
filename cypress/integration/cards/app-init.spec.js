@@ -14,6 +14,6 @@ describe('App initialization', () => {
     cy.visit('/');
     cy.get('.cards-list li').should('not.exist');
 
-    cy.get('.error').should('be.visible');
+    cy.get('.loading-error').should('be.visible');
   });
 });
