@@ -17,7 +17,7 @@ describe('Input card form', () => {
       cy.server();
     });
     it('Adds a new card on submit', () => {
-      cy.route('POST', '/api/cards', {
+      cy.route('POST', '/test_cards/', {
         card_id: 9999,
         question: typedQuestion,
         answer: typedAnswer,
@@ -31,7 +31,7 @@ describe('Input card form', () => {
     });
     it('Shows an error message on a failed submission', () => {
       cy.route({
-        url: '/api/cards',
+        url: '/test_cards/',
         method: 'POST',
         status: 500,
         response: {},

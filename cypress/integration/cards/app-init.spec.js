@@ -6,7 +6,7 @@ describe('App initialization', () => {
   it('Displays an error on loading failure', () => {
     cy.server();
     cy.route({
-      url: '/api/cards',
+      url: '/test_cards/',
       method: 'GET',
       status: 500,
       response: {},
