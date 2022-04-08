@@ -1,7 +1,8 @@
+import '../App.css';
 export const FlashCard = props => {
   return (
     <>
-      <p style={{listStyle: 'none'}}>{props.question}</p>
+      <p className="card">{props.question}</p>
     </>
   );
 };

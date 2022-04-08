@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import {loadCards, saveCard} from './services/api';
 import CardBox from './pages/CardBox';
 import NewCardForm from './components/NewCardForm';
-
+import './App.css';
 const App = () => {
   const [cards, setCards] = useState([]);
   const [newCard, setNewCard] = useState({question: '', answer: ''});

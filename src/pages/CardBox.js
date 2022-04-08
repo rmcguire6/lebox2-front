@@ -9,7 +9,8 @@ const CardBox = props => {
     <>
       <div className="cards-list">
         <FlashCard {...props.cards[currentIndex]} />
-        <p className="message">{message}</p>
+        <br />
+        <span className="message">{message}</span>
       </div>
     </>
   );

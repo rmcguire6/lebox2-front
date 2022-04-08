@@ -1,3 +1,4 @@
+import '../App.css';
 export const NewCardForm = ({
   handleNewCardChange,
   handleNewCardSubmit,

@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+.question,
+.answer {
+  margin: 0.25rem;
+}
+.card {
+  display: inline-flex;
+  padding: 0.25rem;
+  list-style: none;
+  border: solid;
+  border-radius: 10%;
+  font-weight: 700;
+}
