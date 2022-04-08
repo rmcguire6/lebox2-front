@@ -25,6 +25,7 @@ export const NewCardForm = ({
           onChange={handleNewCardChange}
           placeholder="Add an Answer"
         />
+        <br />
         <button className="newCard_button">Submit</button>
       </form>
     </>

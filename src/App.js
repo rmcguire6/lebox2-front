@@ -5,18 +5,16 @@ import NewCardForm from './components/NewCardForm';
 
 const App = () => {
   const [cards, setCards] = useState([]);
-  const [visibleCards, setVisibleCards] = useState([]);
   const [newCard, setNewCard] = useState({question: '', answer: ''});
   const [loadingError, setLoadingError] = useState('');
   const [submissionError, setSubmissionError] = useState('');
-
   useEffect(() => {
     loadCards()
       .then(({data}) => setCards(data))
       .catch(() => setLoadingError('Cards did not load'));
   }, []);
   useEffect(() => {
-    setVisibleCards(cards);
+    setCards(cards);
   }, [cards]);
   const handleNewCardChange = e => {
     const {name, value} = e.target;
@@ -37,20 +35,22 @@ const App = () => {
 
   return (
     <>
-      <h1>Welcome to the Leitner Box</h1>
-      {loadingError ? (
-        <span className="loading-error">{loadingError}</span>
-      ) : (
-        <CardBox cards={visibleCards} />
-      )}
-      <NewCardForm
-        newCard={newCard}
-        handleNewCardChange={handleNewCardChange}
-        handleNewCardSubmit={handleNewCardSubmit}
-      />
-      {submissionError ? (
-        <span className="submission-error">{submissionError}</span>
-      ) : null}
+      <div className="container">
+        <h1>Welcome to the Leitner Box</h1>
+        {loadingError ? (
+          <span className="loading-error">{loadingError}</span>
+        ) : (
+          <CardBox cards={cards} />
+        )}
+        <NewCardForm
+          newCard={newCard}
+          handleNewCardChange={handleNewCardChange}
+          handleNewCardSubmit={handleNewCardSubmit}
+        />
+        {submissionError ? (
+          <span className="submission-error">{submissionError}</span>
+        ) : null}
+      </div>
     </>
   );
 };
