@@ -3,14 +3,24 @@ import FlashCard from '../components/FlashCard';
 
 const CardBox = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const message = 'try to remember, then click';
-
+  const [isQuestionVisible, setIsQuestionVisible] = useState(true);
+  const handleClick = () => {
+    setIsQuestionVisible(v => !v);
+  };
   return (
     <>
       <div className="cards-list">
-        <FlashCard {...props.cards[currentIndex]} />
+        <FlashCard
+          handleClick={handleClick}
+          isQuestionVisible={isQuestionVisible}
+          {...props.cards[currentIndex]}
+        />
         <br />
-        <span className="message">{message}</span>
+        <span className="message">
+          {isQuestionVisible
+            ? 'try to remember, then click'
+            : 'did you remember it?'}
+        </span>
       </div>
     </>
   );
