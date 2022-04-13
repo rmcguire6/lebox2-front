@@ -6,12 +6,29 @@
 .question,
 .answer {
   margin: 0.25rem;
+  border: solid;
+  border-radius: 5%;
+}
+.message {
+  margin: 0.25 rem 0 0 0;
 }
 .card {
   display: inline-flex;
+  justify-content: center;
   padding: 0.25rem;
   list-style: none;
   border: solid;
   border-radius: 10%;
   font-weight: 700;
+  max-width: 7rem;
+}
+.green {
+  background-color: green;
+}
+.red {
+  background-color: red;
+}
+.no,
+.yes {
+  margin: 0.25rem;
 }

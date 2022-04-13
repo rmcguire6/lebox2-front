@@ -6,7 +6,7 @@ describe('Flash card', () => {
     answer = 'to live';
   });
 
-  it('displays question  only at initialization', () => {
+  it('displays question at initialization', () => {
     cy.get('.cards-list button').first().should('contain', question);
     cy.get('.cards-list button').first().should('not.contain', answer);
   });
@@ -28,6 +28,20 @@ describe('Flash card', () => {
     });
     it('it shows the message "did you remember it?"', () => {
       cy.get('.message').should('contain', 'did you remember it?');
+    });
+    it('it shows the buttons "Yes" and "No"', () => {
+      cy.get('.no').should('contain', 'No, try again');
+      cy.get('.yes').should('contain', 'Yes, I did!');
+    });
+    it('shows the question again when the No button is clicked"', () => {
+      cy.get('.no').click();
+      cy.get('.cards-list button').first().should('contain', question);
+      cy.get('.cards-list button').first().should('not.contain', answer);
+    });
+    it('when the Yes button is clicked, it shows the next card', () => {
+      cy.get('.yes').click();
+      cy.get('.cards-list button').first().should('contain', 'tomar');
+      cy.get('.cards-list button').first().should('not.contain', 'to take');
     });
   });
 });

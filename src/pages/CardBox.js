@@ -1,11 +1,21 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import FlashCard from '../components/FlashCard';
-
+import ActionBox from '../components/ActionBox';
 const CardBox = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [numberOfCards, setNumberOfCards] = useState(0);
   const [isQuestionVisible, setIsQuestionVisible] = useState(true);
+  useEffect(() => {
+    setNumberOfCards(props.cards.length);
+  }, [numberOfCards, props.cards]);
   const handleClick = () => {
     setIsQuestionVisible(v => !v);
+  };
+  const handleYes = () => {
+    setIsQuestionVisible(v => !v);
+    if (numberOfCards - 1 > currentIndex) {
+      setCurrentIndex(c => c + 1);
+    }
   };
   return (
     <>
@@ -21,6 +31,9 @@ const CardBox = props => {
             ? 'try to remember, then click'
             : 'did you remember it?'}
         </span>
+        {isQuestionVisible ? null : (
+          <ActionBox handleNo={handleClick} handleYes={handleYes} />
+        )}
       </div>
     </>
   );
