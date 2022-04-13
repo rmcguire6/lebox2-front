@@ -25,7 +25,7 @@ describe('Input card form', () => {
       cy.get('.question').type(typedQuestion);
       cy.get('.answer').type(typedAnswer);
       cy.get('.newCard_button').click().should('have.value', '');
-      cy.get('.cards-list p')
+      cy.get('.cards-list button')
         .should('have.length', 1)
         .and('contain', typedQuestion);
     });
