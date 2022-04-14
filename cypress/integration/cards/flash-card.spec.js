@@ -12,7 +12,8 @@ describe('Flash card', () => {
   });
   it('displays only first card', () => {
     cy.get('.cards-list button').should('contain', question);
-    cy.get('.cards-list button').should('not.contain', 'tomar');
+    cy.get('.cards-list button').should('not.contain', 'hablar');
+    cy.get('.cards-list button').should('not.contain', 'comer');
   });
   it('displays instructions on how to show answer', () => {
     let message = 'try to remember, then click';
@@ -40,8 +41,8 @@ describe('Flash card', () => {
     });
     it('when the Yes button is clicked, it shows the next card', () => {
       cy.get('.yes').click();
-      cy.get('.cards-list button').first().should('contain', 'tomar');
-      cy.get('.cards-list button').first().should('not.contain', 'to take');
+      cy.get('.cards-list button').first().should('contain', 'hablar');
+      cy.get('.cards-list button').first().should('not.contain', 'to speak');
     });
   });
 });

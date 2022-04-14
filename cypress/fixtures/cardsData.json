@@ -1,5 +1,5 @@
 [
-  {"card_id": 1, "question": "vivir", "answer": "to live"},
-  {"card_id": 2, "question": "tomar", "answer": "to take"},
-  {"card_id": 3, "question": "comer", "answer": "to eat"}
+  {"card_id": 1, "question": "vivir", "answer": "to live", "level": 1},
+  {"card_id": 2, "question": "hablar", "answer": "to speak", "level": 1},
+  {"card_id": 3, "question": "comer", "answer": "to eat", "level": 1}
 ]
