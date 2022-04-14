@@ -1,7 +1,7 @@
 describe('App initialization', () => {
   it('Loads cards on page load', () => {
     cy.seedAndVisit();
-    cy.get('.cards-list button').first().should('have.length', 1);
+    cy.get('.cards button').first().should('have.length', 1);
   });
   it('Displays an error on loading failure', () => {
     cy.server();
@@ -12,7 +12,7 @@ describe('App initialization', () => {
       response: {},
     });
     cy.visit('/');
-    cy.get('.cards-list button').should('not.exist');
+    cy.get('.cards button').should('not.exist');
 
     cy.get('.loading-error').should('be.visible');
   });
