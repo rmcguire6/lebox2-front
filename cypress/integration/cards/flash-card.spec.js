@@ -53,7 +53,6 @@ describe('Flash card', () => {
         response: {},
       });
       cy.get('@card').should('not.exist');
-      cy.get('.cards').invoke('show').should('have.length', 2);
     });
     it('it shows the next card', () => {
       cy.get('.cards button').first().should('contain', 'hablar');
