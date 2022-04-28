@@ -1,11 +1,15 @@
 import {useEffect, useState} from 'react';
 import {updateCard} from '../services/api';
 import FlashCard from '../components/FlashCard';
+import FinalScreen from '../components/FinalScreen';
 import ActionBox from '../components/ActionBox';
+
 const CardBox = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [numberOfCards, setNumberOfCards] = useState(0);
   const [isQuestionVisible, setIsQuestionVisible] = useState(true);
+  const [showEndMessage, setShowEndMessage] = useState(false)
+
   useEffect(() => {
     setNumberOfCards(props.cards.length);
   }, [numberOfCards, props.cards]);
@@ -20,14 +24,20 @@ const CardBox = props => {
         props.cards.filter(card => card.card_id !== currentCard.card_id),
       ),
     );
-    if (numberOfCards - 1 > currentIndex) {
+    if (numberOfCards - 1> currentIndex) {
       setCurrentIndex(c => c + 1);
+    } else {
+      setShowEndMessage(true)
     }
   };
   return (
     <>
       <div className="cards">
-        <FlashCard
+        {showEndMessage? <FinalScreen number={numberOfCards}/> :
+        <>
+        <span className="message">Number of cards left: {numberOfCards - currentIndex}</span>
+        <br />
+          <FlashCard
           handleClick={handleClick}
           isQuestionVisible={isQuestionVisible}
           {...props.cards[currentIndex]}
@@ -41,6 +51,8 @@ const CardBox = props => {
         {isQuestionVisible ? null : (
           <ActionBox handleNo={handleClick} handleYes={handleYes} />
         )}
+        </>
+      }
       </div>
     </>
   );

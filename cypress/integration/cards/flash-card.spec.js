@@ -11,7 +11,8 @@ describe('Flash card', () => {
     cy.get('.cards button').first().should('not.contain', answer);
   });
   it('displays only first card', () => {
-    cy.get('.cards button').should('contain', question);
+    question = 'vivir';
+    answer = 'to live';
     cy.get('.cards button').should('not.contain', 'hablar');
     cy.get('.cards button').should('not.contain', 'comer');
   });
@@ -58,5 +59,43 @@ describe('Flash card', () => {
       cy.get('.cards button').first().should('contain', 'hablar');
       cy.get('.cards button').first().should('not.contain', 'to speak');
     });
+  });
+  describe('when the last card button is clicked', () => {
+    beforeEach(() => {
+      cy.seedAndVisit()
+      cy.get('.cards button').click();
+      cy.get('.yes').click().as('card');
+      cy.route({
+        url: '/test_cards/1',
+        method: 'PUT',
+        status: 200,
+        response: {},
+      });
+    });
+    it('it removes the card', () => {
+      cy.get('@card').should('not.exist');
+    });
+    it('the final message does not show if there are cards', () => {
+      cy.get('.final-message').should('not.exist');
+  })
+    it('does show if there are no more cards', () => {
+      cy.get('.cards button').click();
+      cy.get('.yes').click().as('card');
+      cy.route({
+        url: '/test_cards/1',
+        method: 'PUT',
+        status: 200,
+        response: {},
+      });
+      cy.get('.cards button').click();
+      cy.get('.yes').click().as('card');
+      cy.route({
+        url: '/test_cards/1',
+        method: 'PUT',
+        status: 200,
+        response: {},
+      });
+      cy.get('.final-message').should('exist');
+      })
   });
 });

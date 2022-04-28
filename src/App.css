@@ -9,8 +9,10 @@
   border: solid;
   border-radius: 5%;
 }
-.message {
+.message, final-message {
   margin: 0.25 rem 0 0 0;
+  font-weight: 700;
+  max-width: 50%;
 }
 .card {
   display: inline-flex;

@@ -43,8 +43,8 @@ The Leitner spacing used has 7 levels and 64 days.
 - [x] TDD develop listing cards component
 - [x] TDD develop creating a card component
 - [x] TDD develop answering a card actions
-- [] TDD end of session information
-- [] TDD selecting a day's cards
+- [x] TDD end of session information
 - [] TDD user sign up
 - [] TDD user log in
 - [] TDD user log out
+- [] TDD selecting a day's cards
