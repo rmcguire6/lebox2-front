@@ -13,9 +13,7 @@ describe('Input card form', () => {
     cy.get('.answer').type(typedAnswer).should('have.value', typedAnswer);
   });
   context('new card form submission', () => {
-    beforeEach(() => {
-      cy.server();
-    });
+    
     it('Adds a new card on submit', () => {
       cy.route('POST', '/test_cards/', {
         card_id: 9999,
@@ -30,6 +28,7 @@ describe('Input card form', () => {
         .and('contain', typedQuestion);
     });
     it('Shows an error message on a failed submission', () => {
+      cy.server()
       cy.route({
         url: '/test_cards/',
         method: 'POST',
