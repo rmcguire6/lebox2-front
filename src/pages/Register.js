@@ -51,6 +51,7 @@ const Register = () => {
         />
         <br />
         <input
+          hidden
           type="text"
           name="cards_per_day"
           value={user.cards_per_day}
