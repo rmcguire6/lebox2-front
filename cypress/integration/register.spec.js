@@ -36,6 +36,7 @@ describe('Register form', () => {
           .and('contain', {"username":'Bob', "email": 'bob@as.net', "current_day_number":1})
 
       });
+      //  not runnning correctly when run with other tests
       it('Shows an error message on a failed submission', () => {
         cy.server()
         cy.route({

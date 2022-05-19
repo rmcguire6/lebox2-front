@@ -4,10 +4,19 @@
   flex-direction: column;
 }
 .question,
-.answer {
+.answer
+ {
   margin: 0.25rem;
   border: solid;
   border-radius: 5%;
+}
+.form {
+    margin: 0 auto;
+    padding: 1em;
+    border: black solid 2px;
+    border-radius: 7px;
+    width: fit-content;
+
 }
 .message, final-message {
   margin: 0.25 rem 0 0 0;

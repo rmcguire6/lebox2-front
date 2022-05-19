@@ -1,13 +1,8 @@
-import {useState} from 'react';
+import {useContext} from 'react';
 import {saveUser} from '../services/api';
-
+import {UserContext} from '../App';
 const Register = () => {
-  const [user, setUser] = useState({
-    username: '',
-    email: '',
-    password: '',
-    cards_per_day: 0
-  });
+  const [user, setUser] = useContext(UserContext);
   const handleUserChange = e => {
     const {name, value} = e.target;
     setUser({
