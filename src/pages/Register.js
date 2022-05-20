@@ -1,10 +1,10 @@
-import {useContext} from 'react';
-import {saveUser} from '../services/api';
-import {UserContext} from '../App';
+import { useContext } from 'react';
+import { saveUser } from '../services/api';
+import { UserContext } from '../App';
 const Register = () => {
   const [user, setUser] = useContext(UserContext);
   const handleUserChange = e => {
-    const {name, value} = e.target;
+    const { name, value } = e.target;
     setUser({
       ...user,
       [name]: value,
@@ -12,9 +12,8 @@ const Register = () => {
   };
   const handleUserSubmit = e => {
     e.preventDefault();
-    console.log(user);
     saveUser(user)
-      .then(({data}) => setUser(data))
+      .then(({ data }) => setUser(data))
       .catch(err => `${err}`);
   };
   return (
