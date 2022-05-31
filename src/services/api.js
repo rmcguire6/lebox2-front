@@ -8,4 +8,5 @@ export const loadCards = () => client.get('/test_cards/');
 
 export const updateCard = card_id => client.put(`/test_cards/{card_id}`);
 
-export const saveUser = user => client.post('/users/', user);
+export const saveUser = user =>
+  client.post('/users/', {...user, cards_per_day: 0});

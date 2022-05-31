@@ -1,10 +1,10 @@
-import { useContext } from 'react';
-import { saveUser } from '../services/api';
-import { UserContext } from '../App';
+import {useContext} from 'react';
+import {saveUser} from '../services/api';
+import {UserContext} from '../App';
 const Register = () => {
   const [user, setUser] = useContext(UserContext);
   const handleUserChange = e => {
-    const { name, value } = e.target;
+    const {name, value} = e.target;
     setUser({
       ...user,
       [name]: value,
@@ -12,9 +12,6 @@ const Register = () => {
   };
   const handleUserSubmit = e => {
     e.preventDefault();
-    saveUser(user)
-      .then(({ data }) => setUser(data))
-      .catch(err => `${err}`);
   };
   return (
     <>
@@ -49,16 +46,7 @@ const Register = () => {
           placeholder="Password"
         />
         <br />
-        <input
-          hidden
-          type="text"
-          name="cards_per_day"
-          value={user.cards_per_day}
-          className="cards_per_day"
-          onChange={handleUserChange}
-          placeholder="Add how many cards per day?"
-        />
-        <br />
+
         <button className="newUser_button" type="submit">
           Create a New Account
         </button>
