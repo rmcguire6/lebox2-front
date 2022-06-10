@@ -43,10 +43,11 @@
 .yes {
   margin: 0.25rem;
 }
-.nav {
+.nav, .newCard_button, .newUser_button {
   margin: 0 auto;
   font-size: 0.75rem;
-  background: gray;
+  font-weight: 700;
+  background: darkgray;
   padding: 0.25rem 0.5rem;
   border-radius: 7px;
   width: fit-content;
@@ -59,13 +60,10 @@
 }
 .nav-link {
   text-decoration: none;
-  color: white;
+  color: black;
   font-weight: 700;
 }
 .cards {
   margin-top: .5rem
 }
-.newCard_button, .newUser_button {
-  background-color: gray;
-  color: white;
-}
+

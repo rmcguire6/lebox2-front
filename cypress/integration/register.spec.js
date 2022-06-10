@@ -36,7 +36,6 @@ describe('Register form', () => {
           .and('contain', {"username":'Bob', "email": 'bob@as.net', "current_day_number":1})
 
       });
-      //  not runnning correctly when run with other tests
       it('Shows an error message on a failed submission', () => {
         cy.server()
         cy.route({
@@ -45,10 +44,7 @@ describe('Register form', () => {
           status: 500,
           response: {},
         });
-        cy.get('.question');
-        cy.get('.answer');
-        cy.get('.newCard_button').click();
-        cy.get('.cards').should('have.length', 1);
+        cy.get('.newUser_button').click();
         cy.get('.submission-error').should('be.visible');
       });
    });

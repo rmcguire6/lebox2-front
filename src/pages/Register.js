@@ -1,17 +1,17 @@
-import {useContext} from 'react';
+import {useState} from 'react';
 import {saveUser} from '../services/api';
-import {UserContext} from '../App';
-const Register = () => {
-  const [user, setUser] = useContext(UserContext);
-  const handleUserChange = e => {
-    const {name, value} = e.target;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+
+const Register = props => {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [submissionError, setSubmissionError] = useState('');
+
   const handleUserSubmit = e => {
     e.preventDefault();
+    saveUser({username: username, email: email, password: password})
+      .then(({data}) => props.setUser(data))
+      .catch(() => setSubmissionError('New user registration failed'));
   };
   return (
     <>
@@ -20,10 +20,10 @@ const Register = () => {
         <input
           type="text"
           name="username"
-          value={user.username}
+          value={username}
           className="username"
           autoFocus
-          onChange={handleUserChange}
+          onChange={e => setUsername(e.target.value)}
           placeholder="Name"
           data-cy="username"
         />
@@ -31,18 +31,18 @@ const Register = () => {
         <input
           type="email"
           name="email"
-          value={user.email}
+          value={email}
           className="email"
-          onChange={handleUserChange}
+          onChange={e => setEmail(e.target.value)}
           placeholder="Email"
         />
         <br />
         <input
           type="password"
           name="password"
-          value={user.password}
+          value={password}
           className="password"
-          onChange={handleUserChange}
+          onChange={e => setPassword(e.target.value)}
           placeholder="Password"
         />
         <br />
@@ -51,6 +51,9 @@ const Register = () => {
           Create a New Account
         </button>
       </form>
+      {submissionError ? (
+        <span className="submission-error">{submissionError}</span>
+      ) : null}
     </>
   );
 };
