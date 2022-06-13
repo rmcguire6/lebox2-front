@@ -1,18 +1,13 @@
 import {useState} from 'react';
-import {signInUser} from '../services/api';
-
+import {signInUser} from '../services/api'
+import {createFormData, saveAuthToken} from '../services/utils'
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const saveAuthToken = token => {
-    window.sessionStorage.setItem('access_token', token);
-  };
   const handleUserSubmit = e => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('username', email);
-    formData.append('password', password);
+    const formData = createFormData(email, password);
     signInUser(formData)
       .then(({data}) => {
         saveAuthToken(data.access_token);
