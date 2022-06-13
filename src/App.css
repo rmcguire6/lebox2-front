@@ -43,7 +43,7 @@
 .yes {
   margin: 0.25rem;
 }
-.nav, .newCard_button, .newUser_button {
+.nav, .newCard_button, .newUser_button, .loginButton {
   margin: 0 auto;
   font-size: 0.75rem;
   font-weight: 700;

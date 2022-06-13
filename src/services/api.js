@@ -10,3 +10,10 @@ export const updateCard = card_id => client.put(`/test_cards/{card_id}`);
 
 export const saveUser = ({username, email, password}) =>
   client.post('/users/', {username, email, password, cards_per_day: 0});
+
+export const signInUser = formData =>
+  client.post('/signin/', formData, {
+    headers: {
+      'Content-type': 'multipart/form-data',
+    },
+  });

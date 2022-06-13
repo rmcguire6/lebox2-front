@@ -11,6 +11,10 @@ const NavBar = () => {
         | {''}
         <NavLink className="nav-link" to="/register">
           Register
+        </NavLink>{' '}
+        | {''}
+        <NavLink className="nav-link" to="/signin">
+          Sign In
         </NavLink>
       </nav>
     </>
