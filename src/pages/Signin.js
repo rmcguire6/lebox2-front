@@ -1,9 +1,11 @@
 import {useState} from 'react';
+import {useNavigate} from 'react-router-dom'
 import {signInUser} from '../services/api'
 import {createFormData, saveAuthToken} from '../services/utils'
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate()
 
   const handleUserSubmit = e => {
     e.preventDefault();
@@ -13,6 +15,7 @@ const Signin = () => {
         saveAuthToken(data.access_token);
         setEmail('');
         setPassword('');
+        navigate('/')
       })
       .catch(err => console.error('err', err));
   };
