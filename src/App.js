@@ -1,4 +1,3 @@
-import React, {useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import Signin from './pages/Signin';
@@ -8,21 +7,17 @@ import Register from './pages/Register';
 
 import './App.css';
 
-export const UserContext = React.createContext();
-
 const App = () => {
-  const [user, setUser] = useState({});
 
   return (
     <>
       <div className="container">
         <h1>Welcome to the Leitner Box </h1>
-        {user.username}
         <BrowserRouter>
           <NavBar />
           <Routes>
             <Route path="/signin" element={<Signin />} />
-            <Route path="/register" setUser={setUser} element={<Register />} />
+            <Route path="/register" element={<Register />} />
             <Route index element={<Dashboard />} />
             <Route path="*" element={<NoMatch />} />
           </Routes>

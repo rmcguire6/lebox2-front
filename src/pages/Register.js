@@ -1,17 +1,16 @@
 import {useState} from 'react';
 import {saveUser} from '../services/api';
 
-const Register = props => {
+const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [submissionError, setSubmissionError] = useState('');
 
   const handleUserSubmit = e => {
     e.preventDefault();
     saveUser({username: username, email: email, password: password})
-      .then(({data}) => props.setUser(data))
-      .catch(() => setSubmissionError('New user registration failed'));
+      .then(({data}) => console.log('data', data))
+      .catch(err => console.error(err));
   };
   return (
     <>
@@ -51,9 +50,6 @@ const Register = props => {
           Create a New Account
         </button>
       </form>
-      {submissionError ? (
-        <span className="submission-error">{submissionError}</span>
-      ) : null}
     </>
   );
 };
