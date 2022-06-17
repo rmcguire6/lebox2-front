@@ -1,21 +1,21 @@
 import {useState} from 'react';
-import {useNavigate} from 'react-router-dom'
-import {signInUser} from '../services/api'
-import {createFormData, saveAuthToken} from '../services/utils'
+import {useNavigate} from 'react-router-dom';
+import {signInUser} from '../services/api';
+import {createFormData, setAuthToken} from '../services/utils';
 const Signin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleUserSubmit = e => {
     e.preventDefault();
     const formData = createFormData(email, password);
     signInUser(formData)
       .then(({data}) => {
-        saveAuthToken(data.access_token);
+        setAuthToken(data.access_token);
         setEmail('');
         setPassword('');
-        navigate('/')
+        navigate('/');
       })
       .catch(err => console.error('err', err));
   };
@@ -44,7 +44,7 @@ const Signin = () => {
         />
         <br />
 
-        <button className="SigninButton" type="submit">
+        <button className="SignInButton" type="submit">
           Sign In
         </button>
       </form>

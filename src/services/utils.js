@@ -11,4 +11,3 @@ export const createFormData = (email, password) => {
   formData.append('password', password);
   return formData;
 };
-
