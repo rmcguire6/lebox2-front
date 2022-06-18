@@ -1,11 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import { setAuthToken } from '../services/utils';
+import {setAuthToken} from '../services/utils';
 
 const NavBar = () => {
   const handleSignOut = () => {
-    setAuthToken(null)
-  }
+    setAuthToken(null);
+  };
   return (
     <>
       <nav className="nav">
