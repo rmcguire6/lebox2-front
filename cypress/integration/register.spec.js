@@ -12,9 +12,7 @@ describe('Register form', () => {
       cy.get('.password').type('1234').should('have.value', '1234');
     });
     context('new user form submission', () => {
- 
-      it
-      ('Adds a new user on submit', () => {
+      it('Adds a new user on submit', () => {
         cy.intercept('POST', '/users/', {
           user_id: 999,
           username: 'Bob',
@@ -24,8 +22,6 @@ describe('Register form', () => {
           current_day_number: 1,
           created_at: "2022-05-14"
         }).as('addUser')
-        cy.visit('/register')
-
         cy.get('.username').type('Bob').should('have.value', 
         'Bob');
         cy.get('.email').type('bob@as.net').should('have.value', 'bob@as.net');

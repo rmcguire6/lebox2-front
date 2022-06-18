@@ -5,12 +5,16 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [submissionError, setSubmissionError] = useState('');
 
   const handleUserSubmit = e => {
     e.preventDefault();
     saveUser({username: username, email: email, password: password})
       .then(({data}) => console.log('data', data))
-      .catch(err => console.error(err));
+      .catch(err => {
+        setSubmissionError(`Registration failed. Please try again`);
+        console.error(err);
+      });
   };
   return (
     <>
@@ -50,6 +54,9 @@ const Register = () => {
           Create a New Account
         </button>
       </form>
+      {submissionError ? (
+        <span className="submission-error">{submissionError}</span>
+      ) : null}
     </>
   );
 };
