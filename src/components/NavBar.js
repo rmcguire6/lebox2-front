@@ -1,7 +1,11 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import { setAuthToken } from '../services/utils';
 
 const NavBar = () => {
+  const handleSignOut = () => {
+    setAuthToken(null)
+  }
   return (
     <>
       <nav className="nav">
@@ -17,7 +21,7 @@ const NavBar = () => {
           Sign In
         </NavLink>{' '}
         | {''}
-        <button className="signOutButton" >
+        <button className="signOutButton" onClick={handleSignOut}>
           Sign Out
         </button>
       </nav>

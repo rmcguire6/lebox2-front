@@ -8,6 +8,7 @@ const Dashboard = () => {
   const [newCard, setNewCard] = useState({question: '', answer: ''});
   const [loadingError, setLoadingError] = useState('');
   const [submissionError, setSubmissionError] = useState('');
+
   useEffect(() => {
     loadCards()
       .then(({data}) => setCards(data))
@@ -32,6 +33,7 @@ const Dashboard = () => {
       .catch(() => setSubmissionError('New card submission failed'));
     setNewCard({question: '', answer: ''});
   };
+
   return (
     <>
       {loadingError ? (
