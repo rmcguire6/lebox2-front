@@ -15,10 +15,14 @@ const NavBar = () => {
           Home
         </NavLink>{' '}
         | {''}
-        {token && <><NavLink className="nav-link" to="/dashboard">
-          Cards
-        </NavLink>{' '}
-        | {''}</>}
+        {token && (
+          <>
+            <NavLink className="nav-link" to="/dashboard">
+              Cards
+            </NavLink>{' '}
+            | {''}
+          </>
+        )}
         {!token && (
           <>
             <NavLink className="nav-link" to="/register">
