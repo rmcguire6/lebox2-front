@@ -1,33 +1,40 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {NavLink} from 'react-router-dom';
-import {setAuthToken} from '../services/utils';
+import {AuthContext} from '../App';
 
 const NavBar = () => {
+  const {token, setToken} = useContext(AuthContext);
   const handleSignOut = () => {
-    setAuthToken(null);
+    setToken(null);
   };
   return (
     <>
       <nav className="nav">
         <NavLink className="nav-link" to="/">
+          {' '}
           Home
         </NavLink>{' '}
         | {''}
-        <NavLink className="nav-link" to="/dashboard">
+        {token && <><NavLink className="nav-link" to="/dashboard">
           Cards
         </NavLink>{' '}
-        | {''}
-        <NavLink className="nav-link" to="/register">
-          Register
-        </NavLink>{' '}
-        | {''}
-        <NavLink className="nav-link" to="/signin">
-          Sign In
-        </NavLink>{' '}
-        | {''}
-        <button className="signOutButton" onClick={handleSignOut}>
-          Sign Out
-        </button>
+        | {''}</>}
+        {!token && (
+          <>
+            <NavLink className="nav-link" to="/register">
+              Register
+            </NavLink>{' '}
+            | {''}
+            <NavLink className="nav-link" to="/signin">
+              Sign In
+            </NavLink>{' '}
+          </>
+        )}
+        {token && (
+          <button className="signOutButton" onClick={handleSignOut}>
+            Sign Out
+          </button>
+        )}
       </nav>
     </>
   );
