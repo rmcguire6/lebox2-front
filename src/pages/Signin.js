@@ -1,9 +1,11 @@
-import {useState} from 'react';
+import {useContext, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {signInUser} from '../services/api';
-import {createFormData, setAuthToken} from '../services/utils';
+import {createFormData} from '../services/utils';
+import {AuthContext} from 'App';
 
 const Signin = () => {
+  const {token, setToken} = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
@@ -13,10 +15,11 @@ const Signin = () => {
     const formData = createFormData(email, password);
     signInUser(formData)
       .then(({data}) => {
-        setAuthToken(data.access_token);
+        setToken(data.access_token);
+        console.log('signin', token);
         setEmail('');
         setPassword('');
-        navigate('/');
+        navigate('/dashboard');
       })
       .catch(err => console.error('err', err));
   };
