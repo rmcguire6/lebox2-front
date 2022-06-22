@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
-import {BadRoutePage} from './pages/BadRoutePage';
+import BadRoutePage from './pages/BadRoutePage';
 import Dashboard from './pages/Dashboard';
 import Home from './pages/Home';
 import NavBar from './components/NavBar';
