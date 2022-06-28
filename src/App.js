@@ -17,7 +17,6 @@ const App = () => {
   return (
     <>
       <div className="container">
-        <h1>Welcome to the Leitner Box </h1>
         <AuthContext.Provider value={{token, setToken}}>
           <BrowserRouter>
             <NavBar />

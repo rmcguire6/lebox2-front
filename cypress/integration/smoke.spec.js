@@ -1,6 +1,6 @@
 describe('Smoke Test', () => {
   it('can view the home page', () => {
     cy.visit('/');
-    cy.contains('Welcome to the Leitner Box');
+    cy.contains('Welcome to LeBox');
   });
 });
