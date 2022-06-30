@@ -1,5 +1,6 @@
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {updateCard} from '../services/api';
+import {AuthContext} from 'App';
 import FlashCard from '../components/FlashCard';
 import FinalScreen from '../components/FinalScreen';
 import ActionBox from '../components/ActionBox';
@@ -9,6 +10,7 @@ const CardBox = props => {
   const [numberOfCards, setNumberOfCards] = useState(0);
   const [isQuestionVisible, setIsQuestionVisible] = useState(true);
   const [showEndMessage, setShowEndMessage] = useState(false);
+  const {token} = useContext(AuthContext);
 
   useEffect(() => {
     setNumberOfCards(props.cards.length);
@@ -19,11 +21,7 @@ const CardBox = props => {
   const handleYes = () => {
     setIsQuestionVisible(v => !v);
     const currentCard = props.cards[currentIndex];
-    updateCard(currentCard.card_id).then(() =>
-      props.setCards(
-        props.cards.filter(card => card.card_id !== currentCard.card_id),
-      ),
-    );
+    updateCard(token, currentCard).then(res => console.log('returned ', res.data));
     if (numberOfCards - 1 > currentIndex) {
       setCurrentIndex(c => c + 1);
     } else {

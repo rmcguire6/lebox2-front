@@ -12,7 +12,10 @@ export const loadCards = token =>
     },
   });
 
-export const updateCard = card_id => client.put(`/test_cards/{card_id}`);
+export const updateCard = (token, card) =>
+  client.put(`/cards/${card.card_id}`, card, {
+    headers: {Authorization: 'Bearer ' + token},
+  });
 
 export const saveUser = ({username, email, password}) =>
   client.post('/users/', {username, email, password, cards_per_day: 0});

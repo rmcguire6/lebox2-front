@@ -33,7 +33,6 @@ const Dashboard = () => {
 
   const handleNewCardSubmit = e => {
     e.preventDefault();
-    console.log(newCard);
     saveCard(token, newCard)
       .then(({data}) => setCards(previousState => previousState.concat(data)))
       .catch(() => setSubmissionError('New card submission failed'));
