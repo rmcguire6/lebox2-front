@@ -6,7 +6,11 @@ import {AuthContext} from 'App';
 
 const Dashboard = () => {
   const [cards, setCards] = useState([]);
-  const [newCard, setNewCard] = useState({question: '', answer: ''});
+  const [newCard, setNewCard] = useState({
+    subject: '',
+    question: '',
+    answer: '',
+  });
   const [loadingError, setLoadingError] = useState('');
   const [submissionError, setSubmissionError] = useState('');
   const {token} = useContext(AuthContext);
@@ -30,10 +34,10 @@ const Dashboard = () => {
   const handleNewCardSubmit = e => {
     e.preventDefault();
     console.log(newCard);
-    saveCard(newCard)
+    saveCard(token, newCard)
       .then(({data}) => setCards(previousState => previousState.concat(data)))
       .catch(() => setSubmissionError('New card submission failed'));
-    setNewCard({question: '', answer: ''});
+    setNewCard({subject: '', question: '', answer: ''});
   };
 
   return (

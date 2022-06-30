@@ -10,6 +10,16 @@ export const NewCardForm = ({
       <form className="newCard" onSubmit={handleNewCardSubmit}>
         <input
           type="text"
+          name="subject"
+          value={newCard.subject}
+          className="subject"
+          autoFocus
+          onChange={handleNewCardChange}
+          placeholder="Add a Subject"
+        />
+        <br />
+        <input
+          type="text"
           name="question"
           value={newCard.question}
           className="question"
