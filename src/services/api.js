@@ -2,7 +2,8 @@ import axios from 'axios';
 const client = axios.create({
   baseURL: 'http://localhost:8000',
 });
-export const saveCard = card => client.post('/test_cards/', card);
+export const saveCard = (token, card) =>
+  client.post('/cards/', card, {headers: {Authorization: 'Bearer ' + token}});
 
 export const loadCards = token =>
   client.get('/cards/', {
