@@ -17,8 +17,6 @@ describe('Register form', () => {
           user_id: 999,
           username: 'Bob',
           email: 'bob@as.net',
-          password: '1234',
-          cards_per_day: 2,
           current_day_number: 1,
           created_at: "2022-05-14"
         }).as('addUser')
@@ -35,7 +33,7 @@ describe('Register form', () => {
       it('Shows an error message on a failed submission', () => {
         cy.server()
         cy.route({
-          url: '/test_cards/',
+          url: '/users/',
           method: 'POST',
           status: 500,
           response: {},
