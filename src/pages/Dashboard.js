@@ -1,10 +1,12 @@
 import {useContext, useState, useEffect} from 'react';
-import {loadCards, saveCard} from '../services/api';
+import jwt_decode from 'jwt-decode';
+import {getUser, loadCards, saveCard} from '../services/api';
 import CardBox from './CardBox';
 import NewCardForm from '../components/NewCardForm';
 import {AuthContext} from 'App';
 
 const Dashboard = () => {
+  const [user, setUser] = useState({});
   const [cards, setCards] = useState([]);
   const [newCard, setNewCard] = useState({
     subject: '',
@@ -16,6 +18,11 @@ const Dashboard = () => {
   const {token} = useContext(AuthContext);
 
   useEffect(() => {
+    const decodedToken = jwt_decode(token);
+    const user_id = decodedToken.user_id;
+    getUser(user_id)
+      .then(({data}) => setUser(data))
+      .catch(err => console.log('err', err));
     loadCards(token)
       .then(({data}) => setCards(data))
       .catch(() => setLoadingError('Cards did not load'));
@@ -45,7 +52,7 @@ const Dashboard = () => {
       {loadingError ? (
         <span className="loading-error">{loadingError}</span>
       ) : (
-        <CardBox cards={cards} />
+        <CardBox cards={cards} user={user} />
       )}
       <NewCardForm
         newCard={newCard}

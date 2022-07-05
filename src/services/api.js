@@ -26,3 +26,5 @@ export const signInUser = formData =>
       'Content-type': 'multipart/form-data',
     },
   });
+
+export const getUser = id => client.get(`/users/${id}/`);

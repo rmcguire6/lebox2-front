@@ -21,8 +21,7 @@ const CardBox = props => {
   const handleYes = () => {
     setIsQuestionVisible(v => !v);
     const currentCard = props.cards[currentIndex];
-    if (currentCard.level < 7)
-      currentCard.level = currentCard.level + 1;
+    if (currentCard.level < 7) currentCard.level = currentCard.level + 1;
     updateCard(token, currentCard)
       .then(({data}) => console.log('returned', data))
       .catch(err => console.log('error', err));
@@ -35,7 +34,7 @@ const CardBox = props => {
   const handleNo = () => {
     setIsQuestionVisible(v => !v);
     const currentCard = props.cards[currentIndex];
-    currentCard.level = 1
+    currentCard.level = 1;
     updateCard(token, currentCard)
       .then(({data}) => console.log('returned', data))
       .catch(err => console.log('error', err));
@@ -59,7 +58,7 @@ const CardBox = props => {
             <br />
             <span className="message">
               {isQuestionVisible
-                ? 'try to remember, then click'
+                ? `try to remember ${props.user.username}, then click`
                 : 'did you remember it?'}
             </span>
             {isQuestionVisible ? null : (
