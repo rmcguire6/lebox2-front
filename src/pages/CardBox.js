@@ -1,9 +1,9 @@
 import {useContext, useEffect, useState} from 'react';
-import {updateCard} from '../services/api';
-import {AuthContext} from 'App';
 import FlashCard from '../components/FlashCard';
 import FinalScreen from '../components/FinalScreen';
 import ActionBox from '../components/ActionBox';
+import {AuthContext} from 'App';
+import {updateCard} from 'services/api';
 
 const CardBox = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -21,12 +21,24 @@ const CardBox = props => {
   const handleYes = () => {
     setIsQuestionVisible(v => !v);
     const currentCard = props.cards[currentIndex];
-    updateCard(token, currentCard).then(res => console.log('returned ', res.data));
+    if (currentCard.level < 7)
+      currentCard.level = currentCard.level + 1;
+    updateCard(token, currentCard)
+      .then(({data}) => console.log('returned', data))
+      .catch(err => console.log('error', err));
     if (numberOfCards - 1 > currentIndex) {
       setCurrentIndex(c => c + 1);
     } else {
       setShowEndMessage(true);
     }
+  };
+  const handleNo = () => {
+    setIsQuestionVisible(v => !v);
+    const currentCard = props.cards[currentIndex];
+    currentCard.level = 1
+    updateCard(token, currentCard)
+      .then(({data}) => console.log('returned', data))
+      .catch(err => console.log('error', err));
   };
   return (
     <>
@@ -51,7 +63,7 @@ const CardBox = props => {
                 : 'did you remember it?'}
             </span>
             {isQuestionVisible ? null : (
-              <ActionBox handleNo={handleClick} handleYes={handleYes} />
+              <ActionBox handleNo={handleNo} handleYes={handleYes} />
             )}
           </>
         )}

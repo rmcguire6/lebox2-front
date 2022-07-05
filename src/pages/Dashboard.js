@@ -23,6 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     setCards(cards);
   }, [cards]);
+
   const handleNewCardChange = e => {
     const {name, value} = e.target;
     setNewCard({
