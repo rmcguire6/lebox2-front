@@ -3,7 +3,7 @@ import FlashCard from '../components/FlashCard';
 import FinalScreen from '../components/FinalScreen';
 import ActionBox from '../components/ActionBox';
 import {AuthContext} from 'App';
-import {updateCard} from 'services/api';
+import {updateCard, updateUser} from 'services/api';
 
 const CardBox = props => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -15,6 +15,7 @@ const CardBox = props => {
   useEffect(() => {
     setNumberOfCards(props.cards.length);
   }, [numberOfCards, props.cards]);
+
   const handleClick = () => {
     setIsQuestionVisible(v => !v);
   };
@@ -28,6 +29,8 @@ const CardBox = props => {
     if (numberOfCards - 1 > currentIndex) {
       setCurrentIndex(c => c + 1);
     } else {
+      updateUser(props.user.user_id,{current_day_number: props.user.current_day_number + 1})
+      console.log('user just updated', props.user)
       setShowEndMessage(true);
     }
   };
@@ -43,7 +46,7 @@ const CardBox = props => {
     <>
       <div className="cards">
         {showEndMessage ? (
-          <FinalScreen number={numberOfCards} />
+          <FinalScreen number={numberOfCards} user={props.user}/>
         ) : (
           <>
             <span className="message">

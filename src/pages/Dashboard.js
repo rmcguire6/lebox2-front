@@ -26,7 +26,7 @@ const Dashboard = () => {
     loadCards(token)
       .then(({data}) => setCards(data))
       .catch(() => setLoadingError('Cards did not load'));
-  }, [token]);
+    }, [token]);
   useEffect(() => {
     setCards(cards);
   }, [cards]);

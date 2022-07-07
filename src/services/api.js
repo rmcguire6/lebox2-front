@@ -28,3 +28,5 @@ export const signInUser = formData =>
   });
 
 export const getUser = id => client.get(`/users/${id}/`);
+
+export const updateUser = (id, updates) => client.put(`/users/${id}/`, updates);
