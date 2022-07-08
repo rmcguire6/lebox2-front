@@ -1,6 +1,7 @@
 import {useContext, useState, useEffect} from 'react';
 import jwt_decode from 'jwt-decode';
 import {getUser, loadCards, saveCard} from '../services/api';
+import {selectLevels, selectCards} from '../services/utils';
 import CardBox from './CardBox';
 import NewCardForm from '../components/NewCardForm';
 import {AuthContext} from 'App';
@@ -8,6 +9,8 @@ import {AuthContext} from 'App';
 const Dashboard = () => {
   const [user, setUser] = useState({});
   const [cards, setCards] = useState([]);
+  const [levels, setLevels] = useState([]);
+  const [filteredCards, setFilteredCards] = useState([]);
   const [newCard, setNewCard] = useState({
     subject: '',
     question: '',
@@ -23,13 +26,15 @@ const Dashboard = () => {
     getUser(user_id)
       .then(({data}) => setUser(data))
       .catch(err => console.log('err', err));
+    setLevels(selectLevels(user_id));
     loadCards(token)
       .then(({data}) => setCards(data))
       .catch(() => setLoadingError('Cards did not load'));
-    }, [token]);
+  }, [token]);
   useEffect(() => {
     setCards(cards);
-  }, [cards]);
+    setFilteredCards(selectCards(levels, cards));
+  }, [cards, levels]);
 
   const handleNewCardChange = e => {
     const {name, value} = e.target;
@@ -52,7 +57,7 @@ const Dashboard = () => {
       {loadingError ? (
         <span className="loading-error">{loadingError}</span>
       ) : (
-        <CardBox cards={cards} user={user} />
+        <CardBox cards={filteredCards} user={user} />
       )}
       <NewCardForm
         newCard={newCard}
