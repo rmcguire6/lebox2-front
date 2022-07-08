@@ -29,8 +29,10 @@ const CardBox = props => {
     if (numberOfCards - 1 > currentIndex) {
       setCurrentIndex(c => c + 1);
     } else {
-      updateUser(props.user.user_id,{current_day_number: props.user.current_day_number + 1})
-      console.log('user just updated', props.user)
+      updateUser(props.user.user_id, {
+        current_day_number: props.user.current_day_number + 1,
+      });
+      console.log('user just updated', props.user);
       setShowEndMessage(true);
     }
   };
@@ -46,7 +48,7 @@ const CardBox = props => {
     <>
       <div className="cards">
         {showEndMessage ? (
-          <FinalScreen number={numberOfCards} user={props.user}/>
+          <FinalScreen number={numberOfCards} user={props.user} />
         ) : (
           <>
             <span className="message">
