@@ -19,7 +19,7 @@ When returning to the app the user must log in with username and password before
 The Leitner spacing used has 7 levels and 64 days.
 
 - Level 1 everyday
-- Level 2 every other day
+- Level 2 every other day starting on 1st
 - Level 3 every 4th day starting on the 2nd
 - Level 4 every 4th and 13th day of every 16 days
 - Level 5 every 12th day of every 16 days
