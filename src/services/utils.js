@@ -13,7 +13,7 @@ export const createFormData = (email, password) => {
 };
 export const selectLevels = currentDay => {
   let level = [1];
-  if (currentDay % 2 === 0) {
+  if (currentDay % 2 === 1) {
     level.push(2);
   }
   if ((currentDay - 2) % 4 === 0) {
