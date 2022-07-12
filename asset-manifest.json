@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/rmcguire6/lebox2-front/static/css/main.b005b5f4.css",
+    "main.js": "/rmcguire6/lebox2-front/static/js/main.98533cd9.js",
+    "index.html": "/rmcguire6/lebox2-front/index.html",
+    "main.b005b5f4.css.map": "/rmcguire6/lebox2-front/static/css/main.b005b5f4.css.map",
+    "main.98533cd9.js.map": "/rmcguire6/lebox2-front/static/js/main.98533cd9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b005b5f4.css",
+    "static/js/main.98533cd9.js"
+  ]
+}
