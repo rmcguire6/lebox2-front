@@ -55,11 +55,13 @@ const CardBox = props => {
               Number of cards left: {numberOfCards - currentIndex}
             </span>
             <br />
-            <FlashCard
+            {numberOfCards < 1? <span className="message">Please add cards to memorize</span> :
+            <><FlashCard
               handleClick={handleClick}
               isQuestionVisible={isQuestionVisible}
               {...props.cards[currentIndex]}
             />
+            </>}
             <br />
             <span className="message">
               {isQuestionVisible
