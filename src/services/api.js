@@ -1,6 +1,6 @@
 import axios from 'axios';
 const client = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.REACT_APP_BACKEND_URL,
 });
 export const saveCard = (token, card) =>
   client.post('/cards/', card, {headers: {Authorization: 'Bearer ' + token}});
