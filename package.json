@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://lebox2-front.herokuapp.com",
   "private": true,
+  "engine": "16.14.2",
   "proxy": "https://lebox2.herokuapp.com",
   "dependencies": {
     "axios": "^0.25.0",
