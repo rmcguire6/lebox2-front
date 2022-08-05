@@ -18,7 +18,7 @@ export const updateCard = (token, card) =>
   });
 
 export const saveUser = ({username, email, password}) =>
-  client.post('/users/', {username, email, password, cards_per_day: 0});
+  client.post('/users/', {username, email, password});
 
 export const signInUser = formData =>
   client.post('/login/', formData, {
