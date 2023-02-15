@@ -62,7 +62,7 @@ describe('Flash card', () => {
   });
   describe('when the last card button is clicked', () => {
     beforeEach(() => {
-      cy.seedAndVisit()
+      cy.seedAndVisit();
       cy.get('.cards button').click();
       cy.get('.yes').click().as('card');
       cy.route({
@@ -77,7 +77,7 @@ describe('Flash card', () => {
     });
     it('the final message does not show if there are cards', () => {
       cy.get('.final-message').should('not.exist');
-  })
+    });
     it('does show if there are no more cards', () => {
       cy.get('.cards button').click();
       cy.get('.yes').click().as('card');
@@ -96,6 +96,6 @@ describe('Flash card', () => {
         response: {},
       });
       cy.get('.final-message').should('exist');
-      })
+    });
   });
 });

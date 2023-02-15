@@ -1,6 +1,6 @@
 import axios from 'axios';
 const client = axios.create({
-  baseURL: 'http://localhost:8000',
+  baseURL: process.env.REACT_APP_BACKEND_URL,
 });
 export const saveCard = (token, card) =>
   client.post('/cards/', card, {headers: {Authorization: 'Bearer ' + token}});
@@ -18,7 +18,7 @@ export const updateCard = (token, card) =>
   });
 
 export const saveUser = ({username, email, password}) =>
-  client.post('/users/', {username, email, password, cards_per_day: 0});
+  client.post('/users/', {username, email, password});
 
 export const signInUser = formData =>
   client.post('/login/', formData, {
